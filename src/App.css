@@ -1,0 +1,166 @@
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "微軟正黑體";
+}
+
+@media screen and (max-width: 774px) {
+  .home__bottom__left {
+    display: none;
+  }
+}
+
+.main__color {
+  color: #fdc5c4;
+}
+
+.active {
+  border-bottom: 1px solid black;
+}
+
+.red {
+  background-color: red;
+}
+
+.green {
+  background-color: green;
+}
+
+/* header */
+.headerBox__title {
+  background-color: #fdc5c4;
+}
+
+.headerBox__title p {
+  color: white;
+}
+
+.headerBox__logo__right {
+  border-bottom: 1px solid #fdc5c4;
+}
+
+.headerBox__logo__middle h1 {
+  color: #fdc5c4;
+  font-family: Brush Script MT,
+    Brush Script Std,
+    cursive;
+}
+
+.search {
+  color: #fdc5c4;
+}
+
+.search__icon {
+  color: #fdc5c4;
+}
+
+.signin__box a:hover {
+  border-bottom: 2px solid #fdc5c4;
+  color: black;
+  transition: 0.3s;
+}
+
+.signup__box a:hover {
+  border-bottom: 2px solid #fdc5c4;
+  color: black;
+  transition: 0.3s;
+}
+
+.headerBox__logo__left {
+  color: #fdc5c4;
+}
+
+
+/* home */
+.home__banner {
+  /* height: 400px; */
+  background-image: url(https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
+  background-size: 100% 100%;
+}
+
+.home__banner__btn {
+  border: 3px solid black;
+  /* border-radius: 4px; */
+  background-color: transparent;
+  color: black;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+
+
+.home__banner__btn:hover {
+  background-color: #faebb0;
+  color: black;
+}
+
+.account__profile {
+  font-size: 20px;
+}
+
+.home__info__title {
+  color: #77c9c8;
+}
+
+.home__info__btn {
+  background-color: transparent;
+  border: 2px solid #acd5d3;
+  color: #acd5d3;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.home__info__btn:hover {
+  color: black;
+  border: 2px solid black;
+}
+
+.stamp__box {
+  position: absolute;
+  top: 0;
+  left: 0;
+  background-image: url(//cdn.shopify.com/s/files/1/2654/7138/t/2/assets/free_treats.svg?2080005953795198231);
+  background-size: 115px 115px;
+  background-repeat: no-repeat;
+  height: 150px;
+}
+
+.home__bottom {
+  background-color: #fb9593;
+}
+
+.home__bottom__img img {
+  max-width: 100%;
+}
+
+.home__bottom__right p {
+  font-size: 22px;
+  /* font-family: ProximaNova-Light; */
+  color: white;
+}
+
+/* signin */
+.signin__input {
+  border: 1px solid #aaaaab;
+}
+
+.signin__input:focus {
+  outline: none !important;
+  border: 1px solid rgb(99, 194, 194);
+  ;
+}
+
+.form-control {
+  border-radius: 0%;
+  /* box-shadow: #fdc5c4; */
+}
+
+.signin__btn {
+  background-color: rgb(99, 194, 194);
+  color: white;
+  border: none;
+}
+
+.signin__btn:hover {
+  background-color: #fb9593;
+}
