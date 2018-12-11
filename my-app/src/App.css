@@ -151,7 +151,7 @@
 .signin__input:focus {
   outline: none !important;
   border: 1px solid rgb(99, 194, 194);
-  ;
+
 }
 
 .form-control {
@@ -204,7 +204,7 @@
 
 /* unemploy頁面 */
 .unemploy__content__bg {
-  /* height: 500px; */
+  height: 600px;
   /* background-image: linear-gradient(to right, #fb9593, #faebb0); */
   /* width: 100px; */
   background-image: url(//cdn.shopify.com/s/files/1/2654/7138/files/bonblissity_hero_candyscrubs_597667b7-69cd-4b8d-8934-0c1dbf3f980f_1800x1800.jpg?v=1519934160);
@@ -233,4 +233,20 @@
 
 .question__title {
   margin: 0px;
+}
+
+/* .result__box__content {
+  border: 2px solid #fb9593;
+} */
+
+.pagetwo__careamount {}
+
+.pagetwo__careamount:focus {
+  outline: none !important;
+  border: 1px solid rgb(99, 194, 194);
+}
+
+.result__content {
+  color: #fb9593;
+  font-size: 20px;
 }
