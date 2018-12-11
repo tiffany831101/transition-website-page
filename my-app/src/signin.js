@@ -1,4 +1,5 @@
 import React from "react";
+import { Link, withRouter } from "react-router-dom";
 class Signin extends React.Component {
     constructor() {
         super();
@@ -16,7 +17,17 @@ class Signin extends React.Component {
 
                         <button type="submit" className="signin__btn w-75 d-block mx-auto mt-5 p-2">登入</button>
                     </form>
+
+
                 </div>
+                <div className="signin__box__bottom mt-3 text-center">
+                    <Link className="d-block" name="home" to="/">回到首頁</Link>
+                    <Link className="d-block my-2" name="signup" to="/signup">尚未註冊點我</Link>
+                    <Link className="d-block" name="forgetpwd" to="/forgetpwd">忘記密碼</Link>
+
+
+                </div>
+
 
             </div>
 

@@ -18,7 +18,7 @@ class Header extends React.Component {
                 <div className="px-3 mx-auto mt-3 headerBox__logo d-flex justify-content-between col-lg-12 col-md-12 align-items-center flex-wrap">
                     <div className="px-0 headerBox__logo__right d-flex justify-content-between col-lg-3 col-md-6 col-6 py-1">
                         <div className="search">搜尋</div>
-                        <p className="my-0 search__icon"><i class="fas fa-search"></i></p>
+                        <p className="my-0 search__icon"><i className="fas fa-search"></i></p>
                     </div>
                     <div className="headerBox__logo__middle col-lg-3 col-md-8 col-12">
                         <h1 className="text-center">Byyourside</h1>

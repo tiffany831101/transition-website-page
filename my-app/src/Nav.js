@@ -13,8 +13,14 @@ class Nav extends React.Component {
                         <li className={"nav-item " + (pathname === '/' && 'active')}>
                             <Link className="nav-link" name="home" to="/">關於我們</Link>
                         </li>
-                        <li className={"nav-item " + (pathname === '/about' && 'active')}>
-                            <Link className="nav-link " name="about" to="/about">失業專區</Link>
+                        <li className={"nav-item li__box " + (pathname === '/about' && 'active')}>
+                            <Link className="nav-link umemploy" name="about" to="/about">失業專區</Link>
+                            <div className="umemploy__box col-lg-2 col-md-2 col-2 ">
+                                <Link className="nav-link d-block" name="unemploy" to="/unemploy">津貼試算</Link>
+                                <Link className="nav-link d-block" name="income" to="/income">低收入戶</Link>
+                                <Link className="nav-link d-block" name="special" to="/special">特境家庭</Link>
+                                <Link className="nav-link d-block" name="urgent" to="/urgent">急難救助</Link>
+                            </div>
                         </li>
                         <li className={"nav-item " + (pathname === '/blog' && 'active')}>
                             <Link className="nav-link" name="blog" to="/blog">參與社群</Link>
