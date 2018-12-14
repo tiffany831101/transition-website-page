@@ -202,7 +202,7 @@ button {
 }
 
 .umemploy__box {
-  background-color: #faebb0;
+  background-color: white;
   /* color: #fb9593; */
 }
 
@@ -255,6 +255,11 @@ button {
   font-size: 20px;
 }
 
+.course__banner {
+  background-image: url(https://images.pexels.com/photos/164880/pexels-photo-164880.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
+  background-size: 100% 100%;
+}
+
 .tagbtn {
   color: white;
   background-color: #77c9c8;
@@ -263,23 +268,25 @@ button {
 }
 
 .keyword__box {
-  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
+  /* box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18); */
 }
 
 .courses__title {
   color: black;
   /* background-image: linear-gradient(141deg, #faebb0 0%, #fdc5c4 75%); */
-  background-color: #dae9f5;
+  background-color: #e7f6f9;
   /* color: white; */
   /* box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18); */
 }
+
+
 
 .courses__title .triangle {
   width: 0;
   height: 0;
   border-style: solid;
   border-width: 15px 15px 0 20px;
-  border-color: #dae9f5 transparent transparent transparent;
+  border-color: #e7f6f9 transparent transparent transparent;
   position: absolute;
   left: 10%;
 }
@@ -288,23 +295,23 @@ button {
 
 .unclick {
   background-color: white;
-  color: #65ace6;
+  color: #63c2c2;
 }
 
 .unclick:hover {
-  background-color: #65ace6;
+  background-color: #63c2c2;
   color: white;
 }
 
 
 .clicked {
-  background-color: #65ace6;
+  background-color: #63c2c2;
   color: white
 }
 
 .clicked:hover {
   background-color: white;
-  color: #65ace6
+  color: #63c2c2
 }
 
 .delete {
@@ -313,7 +320,8 @@ button {
 
 .top__keyword__box {
   /* background-color: #faebb0; */
-  /* border: 5px solid #77c9c8; */
+  border: 10px solid #e7f6f9;
+  border-top: none;
   /* box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18); */
 }
 
@@ -354,7 +362,7 @@ button {
 }
 
 .course__result__box {
-  background-color: #f2f2f2;
+  background-color: #e7f6f9;
   z-index: -1;
 }
 
@@ -363,4 +371,93 @@ button {
   background-color: white;
   box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
   height: 100px;
+}
+
+.course__banner__shadow {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(256, 256, 256, 0.4)
+}
+
+.course__banner__btn {
+  background-color: #faebb0;
+  /* border: 3px solid grey; */
+  border: none;
+  border-radius: 4px;
+  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
+}
+
+.course__banner__btn:hover {
+  background-color: #e7f6f9;
+  cursor: pointer;
+  box-shadow: none;
+
+}
+
+.account__box {
+  cursor: pointer;
+}
+
+.account__box:hover {
+  color: #fa524f
+}
+
+.account__box:hover>.account__dropdown {
+  display: block;
+}
+
+/* .account__profile:hover~.account__dropdown {
+ 
+} */
+
+.account__dropdown {
+  cursor: pointer;
+  position: absolute;
+  width: 100px;
+  right: 0;
+  z-index: 10;
+  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
+  background-color: white;
+  display: none;
+}
+
+/* 
+.headerBox__logo__left {
+  position: relative;
+} */
+
+.account__dropdown a {
+  text-decoration: none;
+  color: grey;
+
+}
+
+.club__name__box {
+  color: white;
+  background-color: #77c9c8;
+  cursor: pointer;
+}
+
+.club__name {
+  cursor: pointer;
+  list-style-position: inside;
+  border-radius: 4px;
+}
+
+.club__name:hover {
+  background-color: #acd5d3
+}
+
+.club__triangle {
+  pointer-events: none;
+}
+
+.blog__box {
+  background-color: #77c9c8;
+}
+
+.blog__box .post__box {
+  border-radius: 4px;
+  background-color: white;
 }

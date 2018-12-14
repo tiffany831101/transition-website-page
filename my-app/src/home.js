@@ -6,8 +6,9 @@ class Home extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="home__banner d-flex justify-content-center py-3 d-sm-none d-md-block">
-                    <div className="home__banner__box col-lg-4 col-md-6 col-12">
+                <div className="home__banner d-flex justify-content-center">
+                    <div className="course__banner__shadow"></div>
+                    <div className="home__banner__box col-lg-4 col-md-6 col-12 mt-3">
                         <div className="mt-3 text-center title">
                             <h2>Take Me</h2>
                             <h2>Anywhere</h2>
@@ -16,7 +17,7 @@ class Home extends React.Component {
                             <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Velit obcaecati natus dolorem blanditiis possimus distinctio doloribus accusamus provident ad, quia et, quo ut optio, harum voluptatum. Necessitatibus animi corrupti cum?</p>
                         </div>
                         <div className="col-lg-12 col-md-12 col-md-12 text-center d-flex justify-content-center">
-                            <button className="home__banner__btn p-2">Shop Sweet & Single</button>
+                            <button className="home__banner__btn p-2 mb-3">Shop Sweet & Single</button>
                         </div>
                     </div>
                 </div>

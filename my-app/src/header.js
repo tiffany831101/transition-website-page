@@ -33,14 +33,26 @@ class Header extends React.Component {
                                 <Link className="nav-link px-0 main__color" name="singup" to="/signup">註冊</Link>
                             </div>
                         </div>
-                        <div className="col-lg-2 col-md-2 col-2 px-0">
+                        <div className="col-lg-2 col-md-2 col-2 px-0 position-relative account__box">
                             <p className="account__profile">
                                 <i class="far fa-user"></i>
                                 <i class="fas fa-caret-down"></i>
+
                             </p>
+                            <div className="account__dropdown">
+
+                                <Link className="nav-link d-block" name="unemploy" to="/unemploy">會員資訊</Link>
+                                <Link className="nav-link d-block" name="income" to="/income">津貼帳戶</Link>
+                                <Link className="nav-link d-block" name="special" to="/special">課程紀錄</Link>
+                                <Link className="nav-link d-block" name="urgent" to="/urgent">履歷表</Link>
+
+                            </div>
                         </div>
 
+
                     </div>
+
+
                 </div>
 
 

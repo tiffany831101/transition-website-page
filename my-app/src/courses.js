@@ -34,7 +34,11 @@ class Courses extends React.Component {
     }
 
     componentDidUpdate() {
-        console.log(this.state.filters.filter(item => item.isActive).map((item) => item.label))
+        if (this.state.filters.filter(item => item.isActive).map((item) => item.label).length === 0) {
+            console.log("empty")
+        } else {
+            console.log("not empty");
+        }
         // axios.post("api",
         //     {
         //         keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
@@ -81,7 +85,7 @@ class Courses extends React.Component {
             this.setState(prevState => ({
                 inputValue: "",
             }))
-            console.log(this.state.filters);
+            // console.log(this.state.filters);
         }
 
 
@@ -89,29 +93,45 @@ class Courses extends React.Component {
 
 
     handleChange(e) {
-        console.log(e.target.value);
+        // console.log(e.target.value);
         this.setState({
             inputValue: e.target.value,
         })
     }
 
     showSelect(e) {
-        // console.log(e.target.dataset.name);
+        // console.log(e.target);
         let titlename = e.target.dataset.name; //取得按到的按紐的 id
-        console.log(titlename);
+        // console.log(titlename);
         this.setState({
-            selectTitle: this.state.selectTitle.map(item => item.id !== titlename ? item : {
-                ...item,
-                isActive: !item.isActive
-            })
+            selectTitle: this.state.selectTitle.map(item => item.id !== titlename ?
+                {
+                    ...item,
+                    isActive: false,
+                } : {
+                    ...item,
+                    isActive: !item.isActive
+                })
         })
-        console.log(this.state.selectTitle);
+        // console.log(this.state.selectTitle);
     }
     render() {
         return (
-            <div>
+            <div onClick={this.showSelect}>
+                <div className="course__banner d-flex justify-content-center">
+                    <div className="course__banner__shadow"></div>
+                    <div className="home__banner__box col-lg-5 col-md-6 col-12">
+
+                        <div className="slogan col-lg-12 col-md-12 col-12 flex-wrap text-center mt-5">
+                            <h4 className="py-5">我們改變不了上天發給我們的牌 只能決定怎麼打這手牌。</h4>
+                        </div>
+                        <div className="mt-5 col-lg-12 col-md-12 col-md-12 text-center d-flex justify-content-center">
+                            <button className="course__banner__btn p-2 mb-5">前往性向測驗<i className="fas fa-arrow-right"></i></button>
+                        </div>
+                    </div>
+                </div>
                 {/* 上面的 */}
-                <div className="keyword__box col-lg-8 col-md-8 col-12 px-0">
+                <div className="mt-5 keyword__box col-lg-8 col-md-8 col-12 px-0">
                     <div className="px-0 courses__title col-lg-12 col-md-12 col-12" >
                         {/* <p>熱門類別</p> */}
                         <h4 className="p-2 mb-0">熱門類別</h4>
@@ -187,7 +207,7 @@ class Courses extends React.Component {
                 </div>
 
                 <div className="p-2 mt-3 course__result__box col-lg-12 col-md-12 col-12">
-                    <div className="course__box d-flex">
+                    <div className="course__box d-flex flex-wrap">
                         <div className="course__pic col-lg-4 col-md-4 col-12">123</div>
                         <div className="course__details col-lg-8 col-md-8 col-12">
                             123

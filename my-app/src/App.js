@@ -8,6 +8,7 @@ import { HashRouter as Router, Route, Link } from "react-router-dom";
 import Unemploy from "./unemploy";
 import Courses from "./courses";
 import Signup from "./signup"
+import Blog from "./blog";
 class App extends Component {
   constructor() {
     super();
@@ -29,7 +30,7 @@ class App extends Component {
             {/* <Route exact path="/jobs" component={Job} /> */}
             <Route exact path="/courses" component={Courses} />
 
-
+            <Route exact path="/blog" component={Blog} />
           </div>
         </div>
       </Router>
