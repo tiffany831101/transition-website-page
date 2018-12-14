@@ -262,27 +262,49 @@ button {
   border-radius: 20px;
 }
 
+.keyword__box {
+  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
+}
+
+.courses__title {
+  color: black;
+  /* background-image: linear-gradient(141deg, #faebb0 0%, #fdc5c4 75%); */
+  background-color: #dae9f5;
+  /* color: white; */
+  /* box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18); */
+}
+
+.courses__title .triangle {
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 15px 15px 0 20px;
+  border-color: #dae9f5 transparent transparent transparent;
+  position: absolute;
+  left: 10%;
+}
+
 
 
 .unclick {
   background-color: white;
-  color: #77c9c8;
+  color: #65ace6;
 }
 
 .unclick:hover {
-  background-color: #77c9c8;
+  background-color: #65ace6;
   color: white;
 }
 
 
 .clicked {
-  background-color: rgb(99, 194, 194);
-
+  background-color: #65ace6;
+  color: white
 }
 
 .clicked:hover {
   background-color: white;
-  color: rgb(99, 194, 194)
+  color: #65ace6
 }
 
 .delete {
@@ -291,8 +313,8 @@ button {
 
 .top__keyword__box {
   /* background-color: #faebb0; */
-  /* border: 1px solid #77c9c8; */
-  box-shadow: 0px 7px 20px 5px rgba(0, 0, 0, 0.18);
+  /* border: 5px solid #77c9c8; */
+  /* box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18); */
 }
 
 .keyword__select__title {
@@ -305,7 +327,7 @@ button {
 
 .keyword__select {
   border: 1px solid lightgray;
-  background-color: white;
+  background-color: #f2f2f2;
   position: absolute;
 }
 
@@ -323,9 +345,22 @@ button {
 
 .input__keyword input {
   border: none;
+  overflow: hidden;
 }
 
 .input__keyword input:focus {
   outline: none !important;
   /* border: 1px solid #77c9c8; */
+}
+
+.course__result__box {
+  background-color: #f2f2f2;
+  z-index: -1;
+}
+
+
+.course__box {
+  background-color: white;
+  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
+  height: 100px;
 }

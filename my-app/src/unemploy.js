@@ -262,7 +262,7 @@ class Unemploy extends React.Component {
                                         <p className="question__title">1. 是否為非自願離職</p>
                                         <input type="radio" name="unwill" value="yes" checked={this.state.firstpage.unwill === 'yes'} onChange={this.handleRadioChange} />是
                                         <input className="ml-3" type="radio" name="unwill" value="no" checked={this.state.firstpage.unwill === 'no'} onChange={this.handleRadioChange} />否
-                                </div>
+                                    </div>
                                     <div className="px-4 question__box mb-3">
                                         <p className="question__title">2. 是否具有工作能力且願意繼續工作</p>
                                         <input type="radio" name="canwork" value="yes" checked={this.state.firstpage.canwork === 'yes'} onChange={this.handleRadioChange} />是

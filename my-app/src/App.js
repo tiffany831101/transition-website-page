@@ -7,6 +7,7 @@ import Signin from "./signin";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import Unemploy from "./unemploy";
 import Courses from "./courses";
+import Signup from "./signup"
 class App extends Component {
   constructor() {
     super();
@@ -24,8 +25,8 @@ class App extends Component {
             <Route exact path="/" component={Home} />
             <Route path="/signin" component={Signin} />
             <Route path="/unemploy" component={Unemploy} />
-            {/* <Route path="/signup" component={Signup} />
-            <Route exact path="/jobs" component={Job} /> */}
+            <Route path="/signup" component={Signup} />
+            {/* <Route exact path="/jobs" component={Job} /> */}
             <Route exact path="/courses" component={Courses} />
 
 

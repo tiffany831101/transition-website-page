@@ -60,7 +60,7 @@ class Courses extends React.Component {
             })
         })
 
-        console.log(this.state.filters.filter(job => job.isActive).map(job => job.id));
+        // console.log(this.state.filters.filter(job => job.isActive).map(job => job.id));
 
     }
 
@@ -111,24 +111,29 @@ class Courses extends React.Component {
         return (
             <div>
                 {/* 上面的 */}
-                <div className="px-0 courses__title col-lg-6 col-md-12 col-12" >
-                    <p>熱門類別</p>
-                </div>
-                <div className="col-lg-8 col-md-8 col-12 top__keyword__box py-3 mt-3">
-                    {this.state.filters.filter(job => job.type === "course").map((job) => {
-                        return (
-                            <button className={"mt-3 mx-2 px-2 tagbtn " + (job.isActive ? 'clicked' : 'unclick')} name={job.id}
-                                onClick={this.handleClick}>
-                                {job.label}{(job.isActive ? <i className="fas fa-times delete"></i> : '')}
-                            </button>
-                        )
-                    })}
+                <div className="keyword__box col-lg-8 col-md-8 col-12 px-0">
+                    <div className="px-0 courses__title col-lg-12 col-md-12 col-12" >
+                        {/* <p>熱門類別</p> */}
+                        <h4 className="p-2 mb-0">熱門類別</h4>
+                        <div className="triangle"></div>
+                    </div>
+
+                    <div className="col-lg-12 col-md-12 col-12 top__keyword__box py-3">
+                        {this.state.filters.filter(job => job.type === "course").map((job) => {
+                            return (
+                                <button className={"mt-3 mx-2 px-2 tagbtn " + (job.isActive ? 'clicked' : 'unclick')} name={job.id}
+                                    onClick={this.handleClick}>
+                                    {job.label}{(job.isActive ? <i className="fas fa-times delete"></i> : '')}
+                                </button>
+                            )
+                        })}
+                    </div>
                 </div>
                 {/* 中間的 */}
-                <div className="px-0 mt-5 middlepart__keyword__box col-lg-12 col-md-12 col-12 d-flex">
-                    <div className="middleright__keyword__box col-lg-3 col-md-6 col-12">
+                <div className="px-0 mt-5 flex-wrap middlepart__keyword__box col-lg-8 col-md-8 col-12 d-flex justify-content-between">
+                    <div className="middleright__keyword__box col-lg-4 col-md-6 col-12">
                         <div className="choose__location ">
-                            <div className="col-lg-5 col-md-6 col-6 keyword__select__title px-2 py-1" onClick={this.showSelect} data-name="上課地點">上課地點<i className="fas fa-caret-down triangle__point"></i></div>
+                            <div className="col-lg-12 col-md-12 col-12 keyword__select__title px-2 py-1" onClick={this.showSelect} data-name="上課地點">上課地點<i className="fas fa-caret-down triangle__point float-right"></i></div>
                             <div className={"py-3 col-lg-12 col-md-12 col-12 d-flex flex-wrap justify-content-between keyword__select " + (this.state.selectTitle[0].isActive ? "" : "d-none")} >
                                 {this.state.filters.filter(job => job.type === "location").map((job) => {
                                     return (
@@ -145,7 +150,7 @@ class Courses extends React.Component {
 
                     <div className="middleright__keyword__box col-lg-3 col-md-6 col-12">
                         <div className="choose__fulltime">
-                            <div className="col-lg-5 col-md-6 col-6 keyword__select__title px-2 py-1" onClick={this.showSelect} data-name="上課性質">上課性質<i className="fas fa-caret-down triangle__point"></i></div>
+                            <div className="col-lg-12 col-md-12 col-12 keyword__select__title px-2 py-1" onClick={this.showSelect} data-name="上課性質">上課性質<i className="fas fa-caret-down triangle__point float-right"></i></div>
                             <div className={"py-3 col-lg-12 col-md-12 col-12 d-flex flex-wrap justify-content-between keyword__select " + (this.state.selectTitle[1].isActive ? "" : "d-none")} >
                                 {this.state.filters.filter(job => job.type === "fullday").map((job) => {
                                     return (
@@ -159,13 +164,13 @@ class Courses extends React.Component {
                             </div>
                         </div>
                     </div>
-                    <div className="middleright__keyword__box col-lg-3 col-md-6 col-12">
+                    <div className="middleright__keyword__box col-lg-5 col-md-6 col-12">
                         <div className="input__keyword d-flex py-1">
                             <i className="ml-1 fas fa-search"></i>
-                            <input className="ml-3" type="text" placeholder="課程名稱、關鍵字" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.handleKey} />
+                            <input className="ml-3" type="text" placeholder="關鍵字" value={this.state.inputValue} onChange={this.handleChange} onKeyPress={this.handleKey} />
                         </div>
                     </div>
-                    <div className="middle__keyword__box"></div>
+
 
                 </div>
 
@@ -181,7 +186,15 @@ class Courses extends React.Component {
                     })}
                 </div>
 
-                <div className="red mt-3">1234</div>
+                <div className="p-2 mt-3 course__result__box col-lg-12 col-md-12 col-12">
+                    <div className="course__box d-flex">
+                        <div className="course__pic col-lg-4 col-md-4 col-12">123</div>
+                        <div className="course__details col-lg-8 col-md-8 col-12">
+                            123
+
+                        </div>
+                    </div>
+                </div>
             </div>
         )
     }

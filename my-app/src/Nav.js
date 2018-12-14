@@ -25,9 +25,9 @@ class Nav extends React.Component {
                         <li className={"nav-item " + (pathname === '/blog' && 'active')}>
                             <Link className="nav-link" name="blog" to="/blog">參與社群</Link>
                         </li>
-                        <li className={"nav-item " + (pathname === '/jobs' && 'active')}>
+                        {/* <li className={"nav-item " + (pathname === '/jobs' && 'active')}>
                             <Link className="nav-link" name="jobs" to="/jobs">查詢職缺</Link>
-                        </li>
+                        </li> */}
                         <li className={"nav-item " + (pathname === '/courses' && 'active')}>
                             <Link className="nav-link" name="courses" to="/courses">培訓課程</Link>
                         </li>

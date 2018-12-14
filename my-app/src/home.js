@@ -6,7 +6,7 @@ class Home extends React.Component {
     render() {
         return (
             <div className="container-fluid">
-                <div className="home__banner d-flex justify-content-center py-3">
+                <div className="home__banner d-flex justify-content-center py-3 d-sm-none d-md-block">
                     <div className="home__banner__box col-lg-4 col-md-6 col-12">
                         <div className="mt-3 text-center title">
                             <h2>Take Me</h2>
