@@ -4,6 +4,10 @@
   font-family: "微軟正黑體";
 }
 
+button {
+  outline: none !important;
+}
+
 @media screen and (max-width: 774px) {
   .home__bottom__left {
     display: none;
@@ -249,4 +253,79 @@
 .result__content {
   color: #fb9593;
   font-size: 20px;
+}
+
+.tagbtn {
+  color: white;
+  background-color: #77c9c8;
+  border: 1px solid lightgrey;
+  border-radius: 20px;
+}
+
+
+
+.unclick {
+  background-color: white;
+  color: #77c9c8;
+}
+
+.unclick:hover {
+  background-color: #77c9c8;
+  color: white;
+}
+
+
+.clicked {
+  background-color: rgb(99, 194, 194);
+
+}
+
+.clicked:hover {
+  background-color: white;
+  color: rgb(99, 194, 194)
+}
+
+.delete {
+  pointer-events: none;
+}
+
+.top__keyword__box {
+  /* background-color: #faebb0; */
+  /* border: 1px solid #77c9c8; */
+  box-shadow: 0px 7px 20px 5px rgba(0, 0, 0, 0.18);
+}
+
+.keyword__select__title {
+  border: 1px solid lightgrey;
+  cursor: pointer;
+}
+
+
+
+
+.keyword__select {
+  border: 1px solid lightgray;
+  background-color: white;
+  position: absolute;
+}
+
+.d-none {
+  display: none !important;
+}
+
+.triangle__point {
+  pointer-events: none !important;
+}
+
+.input__keyword {
+  border: 1px solid lightgray;
+}
+
+.input__keyword input {
+  border: none;
+}
+
+.input__keyword input:focus {
+  outline: none !important;
+  /* border: 1px solid #77c9c8; */
 }
