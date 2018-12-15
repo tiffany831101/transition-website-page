@@ -34,6 +34,7 @@ class Income extends React.Component {
 
     sendFirstStep(e) {
         console.log(e);
+        console.log(this.state.answer);
         // axios.post("api", {
         //     result: this.state.answer
         // }).then(response => {
@@ -72,11 +73,11 @@ class Income extends React.Component {
     handleChange(e) {
         e.preventDefault();
         console.log(e.target.value);
-
+        let answer = e.target.value;
         this.setState({
             answer: {
                 ...this.state.answer,
-                [e.target.name]: e.target.value,
+                [e.target.name]: answer,
             }
         })
         console.log(this.state.answer);
@@ -156,7 +157,7 @@ class Income extends React.Component {
                                     </div>
                                     <div className="col-lg-12 col-md-12 col-12 d-flex flex-wrap mx-auto mt-5 btn__box justify-content-between">
                                         <button className="last__btn py-1 px-3" onClick={this.lastStep}>上一步</button>
-                                        <button className="next__btn py-1 px-3" onClick={this.nextStep}>完成</button>
+                                        <button className="next__btn py-1 px-3" onClick={this.nextStep}>下一步</button>
                                     </div>
                                 </div>
                             </div>
