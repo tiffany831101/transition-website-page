@@ -35,17 +35,17 @@ class Income extends React.Component {
     sendFirstStep(e) {
         console.log(e);
         console.log(this.state.answer);
-        // axios.post("api", {
-        //     result: this.state.answer
-        // }).then(response => {
-        //     this.setState({
-        //         result: response.data
-        //     })
+         axios.post("http://127.0.0.1:5000/", {
+             result: this.state.answer
+         }).then(response => {
+             this.setState({
+                 result: response.data
+             })
 
-        // })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
+         })
+             .catch(function (error) {
+                 console.log(error);
+             });
     }
 
 
