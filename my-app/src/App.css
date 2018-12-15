@@ -8,6 +8,11 @@ button {
   outline: none !important;
 }
 
+
+.yellow {
+  background-color: yellow;
+}
+
 @media screen and (max-width: 774px) {
   .home__bottom__left {
     display: none;
@@ -460,4 +465,86 @@ button {
 .blog__box .post__box {
   border-radius: 4px;
   background-color: white;
+}
+
+.negative__ans {
+  color: red;
+}
+
+
+.income__pic__height {
+  height: 400px;
+}
+
+.income__location {
+  height: 40px;
+  /* border-radius: 4px; */
+  /* box-sizing: content-box; */
+  border: 2px solid #63c2c2;
+}
+
+.income__location:focus {
+  outline: none !important;
+  border: 2px solid #acd5d3;
+
+}
+
+.next__btn {
+  background-color: #63c2c2;
+  color: white;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+  /* box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18); */
+}
+
+.next__btn:hover {
+  background-color: #f2f2f2;
+  color: #63c2c2;
+}
+
+.questionaire__box {
+  box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
+}
+
+.last__btn {
+  background-color: #fb9593;
+  color: white;
+  border: none;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.last__btn:hover {
+  background-color: #fdc5c4;
+  color: white;
+}
+
+.select__btn {
+  background-color: white;
+  color: grey;
+  border: 3px solid grey;
+  cursor: pointer;
+}
+
+.btn__selected {
+  background-color: grey;
+  color: white;
+}
+
+/* 
+.select__btn:hover {
+  background-color: grey;
+  color: white;
+} */
+
+.capsule__box {
+  border: 2px solid #63c2c2;
+  border-radius: 4px;
+  background-color: white;
+  overflow: hidden;
+}
+
+.capsule__inside {
+  background-color: #63c2c2;
 }

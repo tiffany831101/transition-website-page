@@ -260,24 +260,24 @@ class Unemploy extends React.Component {
                                     <p className="text-center mx-auto">請領資格核對</p>
                                     <div className="px-4 question__box mb-3">
                                         <p className="question__title">1. 是否為非自願離職</p>
-                                        <input type="radio" name="unwill" value="yes" checked={this.state.firstpage.unwill === 'yes'} onChange={this.handleRadioChange} />是
-                                        <input className="ml-3" type="radio" name="unwill" value="no" checked={this.state.firstpage.unwill === 'no'} onChange={this.handleRadioChange} />否
+                                        <input type="radio" name="unwill" value="yes" checked={this.state.firstpage.unwill === 'yes'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.unwill === "yes" && "negative__ans"}>是</span>
+                                        <input className="ml-3 negative__ans" type="radio" name="unwill" value="no" checked={this.state.firstpage.unwill === 'no'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.unwill === "no" && "negative__ans"}>否</span>
                                     </div>
                                     <div className="px-4 question__box mb-3">
                                         <p className="question__title">2. 是否具有工作能力且願意繼續工作</p>
-                                        <input type="radio" name="canwork" value="yes" checked={this.state.firstpage.canwork === 'yes'} onChange={this.handleRadioChange} />是
-                                <input className="ml-3" type="radio" name="canwork" value="no" checked={this.state.firstpage.canwork === 'no'} onChange={this.handleRadioChange} />否
-                            </div>
+                                        <input type="radio" name="canwork" value="yes" checked={this.state.firstpage.canwork === 'yes'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.canwork === "yes" && "negative__ans"}>是</span>
+                                        <input className="ml-3 negative__ans" type="radio" name="canwork" value="no" checked={this.state.firstpage.canwork === 'no'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.canwork === "no" && "negative__ans"}>否</span>
+                                    </div>
                                     <div className="px-4 question__box mb-3">
                                         <p className="question__title">3. 是否為自營業者</p>
-                                        <input type="radio" name="isboss" value="yes" checked={this.state.firstpage.isboss === 'yes'} onChange={this.handleRadioChange} />是
-                                <input className="ml-3" type="radio" name="isboss" value="no" checked={this.state.firstpage.isboss === 'no'} onChange={this.handleRadioChange} />否
-                            </div>
+                                        <input type="radio" name="isboss" value="yes" checked={this.state.firstpage.isboss === 'yes'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.isboss === "yes" && "negative__ans"}>是</span>
+                                        <input className="ml-3" type="radio" name="isboss" value="no" checked={this.state.firstpage.isboss === 'no'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.isboss === "no" && "negative__ans"}>否</span>
+                                    </div>
                                     <div className="px-4 question__box mb-3">
                                         <p className="question__title">4. 離職退保當日，前3年內合計有滿1年年資</p>
-                                        <input type="radio" name="fullyear" value="yes" checked={this.state.firstpage.fullyear === 'yes'} onChange={this.handleRadioChange} />是
-                                <input className="ml-3" type="radio" name="fullyear" value="no" checked={this.state.firstpage.fullyear === 'no'} onChange={this.handleRadioChange} />否
-                            </div>
+                                        <input type="radio" name="fullyear" value="yes" checked={this.state.firstpage.fullyear === 'yes'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.fullyear === "yes" && "negative__ans"}>是</span>
+                                        <input className="ml-3 negative__ans" type="radio" name="fullyear" value="no" checked={this.state.firstpage.fullyear === 'no'} onChange={this.handleRadioChange} /><span className={this.state.firstpage.fullyear === "no" && "negative__ans"}>否</span>
+                                    </div>
                                     <button className="signin__btn w-25 d-block mx-auto mt-5 p-2" onClick={this.handleFirstStep}>下一步</button></div>)}
                         </div>
 

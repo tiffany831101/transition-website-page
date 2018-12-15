@@ -1,4 +1,5 @@
 import React from "react";
+import axios from "axios";
 class Courses extends React.Component {
     constructor() {
         super();
@@ -37,23 +38,24 @@ class Courses extends React.Component {
         if (this.state.filters.filter(item => item.isActive).map((item) => item.label).length === 0) {
             console.log("empty")
         } else {
+            axios.post('api', {
+                keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
+            })
+                .then(response => {
+                    this.setState({
+                        result: response.data
+                    })
+
+                })
+                .catch(function (error) {
+                    console.log(error);
+                });
             console.log("not empty");
         }
 
         // keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
 
-        axios.post('https://cors-anywhere.herokuapp.com/http://45.55.26.18:3310/posts', {
-            keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
-        })
-            .then(response => {
-                this.setState({
-                    result: response.data
-                })
 
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
 
     }
 

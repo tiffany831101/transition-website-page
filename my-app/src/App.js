@@ -9,6 +9,7 @@ import Unemploy from "./unemploy";
 import Courses from "./courses";
 import Signup from "./signup"
 import Blog from "./blog";
+import Income from "./income";
 class App extends Component {
   constructor() {
     super();
@@ -29,7 +30,7 @@ class App extends Component {
             <Route path="/signup" component={Signup} />
             {/* <Route exact path="/jobs" component={Job} /> */}
             <Route exact path="/courses" component={Courses} />
-
+            <Route path="/income" component={Income} />
             <Route exact path="/blog" component={Blog} />
           </div>
         </div>
