@@ -39,18 +39,22 @@ class Courses extends React.Component {
         } else {
             console.log("not empty");
         }
-        // axios.post("api",
-        //     {
-        //         keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
-        //     }
-        // ).then(response => {
-        //     this.setState({
-        //         response: response.data.id,
-        //     })
 
-        // })
-        //     .catch(function (error) {
-        //         console.log(error);
+        // keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
+
+        axios.post('https://cors-anywhere.herokuapp.com/http://45.55.26.18:3310/posts', {
+            keyword: this.state.filters.filter(item => item.isActive).map((item) => item.label)
+        })
+            .then(response => {
+                this.setState({
+                    result: response.data
+                })
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
 
 
