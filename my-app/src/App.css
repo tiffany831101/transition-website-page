@@ -375,7 +375,7 @@ button {
 .course__box {
   background-color: white;
   box-shadow: 0px 7px 10px 5px rgba(0, 0, 0, 0.18);
-  height: 100px;
+  /* height: 100px; */
 }
 
 .course__banner__shadow {
@@ -547,4 +547,16 @@ button {
 
 .capsule__inside {
   background-color: #63c2c2;
+}
+
+.course__place {
+  color: #77c9c8;
+}
+
+.sub__title {
+  color: grey;
+}
+
+.course__job__name {
+  /* background-color: lightgray; */
 }
