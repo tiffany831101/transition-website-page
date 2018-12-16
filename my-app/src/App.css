@@ -87,7 +87,7 @@ button {
 /* home */
 .home__banner {
   /* height: 400px; */
-  background-image: url(https://images.pexels.com/photos/1037995/pexels-photo-1037995.jpeg?auto=compress&cs=tinysrgb&dpr=2&w=500);
+  background-image: url(https://trello-attachments.s3.amazonaws.com/5c1474d6853d5649f4a2f898/5c14d0656cb11845a18a9494/c1c2b396879e8eb80ea196b2f44e9bf8/Hero-01.jpg);
   background-size: 100% 100%;
 }
 
@@ -559,4 +559,12 @@ button {
 
 .course__job__name {
   /* background-color: lightgray; */
+}
+
+.likebox {
+  border-bottom: 2px solid lightblue;
+}
+
+.fa-heart {
+  font-size: 18px;
 }

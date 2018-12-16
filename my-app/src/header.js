@@ -21,7 +21,7 @@ class Header extends React.Component {
                         <p className="my-0 search__icon"><i className="fas fa-search"></i></p>
                     </div>
                     <div className="headerBox__logo__middle col-lg-3 col-md-8 col-12">
-                        <h1 className="text-center">Byyourside</h1>
+                        <h1 className="text-center">TRANSITION</h1>
                     </div>
                     <div className="headerBox__logo__left col-lg-3 col-md-6 col-6 d-flex justify-content-between">
                         <div className="d-flex justify-content-between col-lg-8 col-md-8 col-8">

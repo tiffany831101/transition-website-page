@@ -4,6 +4,7 @@ class Income extends React.Component {
     constructor() {
         super()
         this.state = {
+            lastAnswer: false,
             location: ["台北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市", "基隆市", "新竹市", "嘉義市", "新竹縣", "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣", "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣", '澎湖縣'],
             questionNumber: 1,//原本在第一題
             step: 1,
@@ -35,17 +36,21 @@ class Income extends React.Component {
     sendFirstStep(e) {
         console.log(e);
         console.log(this.state.answer);
-         axios.post("http://127.0.0.1:5000/", {
-             result: this.state.answer
-         }).then(response => {
-             this.setState({
-                 result: response.data
-             })
+        // axios.post("https://9500836e.ngrok.io/income", {
+        //     result: this.state.answer
+        // }).then(response => {
+        //     this.setState({
+        //         result: response.data
+        //     })
 
-         })
-             .catch(function (error) {
-                 console.log(error);
-             });
+        // })
+        //     .catch(function (error) {
+        //         console.log(error);
+        //     });
+
+        this.setState({
+            lastAnswer: true,
+        })
     }
 
 
@@ -268,7 +273,7 @@ class Income extends React.Component {
 
                     }
 
-                    {this.state.questionNumber === 8 && (
+                    {(this.state.questionNumber === 8 && !this.state.lastAnswer) && (
                         <div className="d-flex box__2">
                             {/* 放圖片的地方 */}
                             <div className="col-lg-4 col-md-4 red px-0 pic__box">
@@ -284,6 +289,32 @@ class Income extends React.Component {
                                     <div className="col-lg-12 col-md-12 col-12 d-flex flex-wrap mx-auto mt-5 btn__box justify-content-between">
                                         <button className="last__btn  py-1 px-2" onClick={this.lastStep}>上一步</button>
                                         <button className="next__btn  py-1 px-2" onClick={this.sendFirstStep}>{(Object.keys(this.state.answer).indexOf("haveChildHighSchool") == (-1) || this.state.answer.haveChildHighSchool === "") ? "跳過" : "完成"}</button>
+                                    </div>
+                                </div>
+                            </div>
+
+
+                        </div>)
+
+                    }
+
+
+                    {(this.state.lastAnswer === true) && (
+                        <div className="d-flex box__2">
+                            {/* 放圖片的地方 */}
+                            <div className="col-lg-4 col-md-4 red px-0 pic__box">
+                                <img className="img-fluid income__pic__height" src="https://images.pexels.com/photos/1279813/pexels-photo-1279813.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="" />
+                            </div>
+                            {/* {放問題的地方} */}
+                            <div className="col-lg-8 col-md-8 question__box pt-5">
+                                <div className="text-center col-lg-8 col-md-8 col-10 d-flex flex-wrap mx-auto mt-5">
+                                    <h4 className="mx-auto">結果</h4>
+                                    <div className="col-lg-12 col-md-12 col-12 mt-3 text-center d-flex justify-content-center">
+                                        <h3 className="mx-auto d-block p-1"><span style={{ color: "red" }}>25637</span>元</h3>
+                                    </div>
+                                    <div className="col-lg-12 col-md-12 col-12 d-flex flex-wrap mx-auto mt-5 btn__box justify-content-between">
+                                        <button className="last__btn  py-1 px-2 mx-auto" onClick={this.lastStep}>送出至帳戶</button>
+
                                     </div>
                                 </div>
                             </div>
