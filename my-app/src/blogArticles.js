@@ -1,10 +1,10 @@
 import React from 'react';
-import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Sidebar from './blogSidebar';
 import Advertise from './blogAdvertise';
-class Blog extends React.Component {
-	constructor() {
-		super();
+class Articles extends React.Component {
+	constructor(props) {
+		console.log(props);
+		super(props);
 		this.state = {
 			blogContent: [
 				{
@@ -28,8 +28,11 @@ class Blog extends React.Component {
 			],
 		};
 	}
-
+	// const { match } = this.props;
 	render() {
+		// 點到哪個category就render那個種類的文章，用componentdidmount
+		// 要sidebar跟廣告bar
+		console.log(this.props.match.params.category);
 		return (
 			<div className="red col-lg-12 col-md-12 col-12 d-flex flex-wrap py-3 blog__box">
 				<Sidebar />
@@ -44,17 +47,16 @@ class Blog extends React.Component {
 							<p>{content.content}</p>
 							<div className="d-flex likebox pb-3">
 								<i className="fas fa-heart" style={{ color: 'red' }} />
-								<p className="ml-1">81</p>
+								<p className="ml-1">81000000</p>
 								<p className="ml-3">回應</p>
 							</div>
 						</div>
 					))}
 				</div>
-				{/* 這邊測試可否到達單頁頁面ok的，之後單頁頁面要設成/blog/whole/posts/2這樣的路徑 */}
-				{/* <Link to="/blog/whole/posts/2">點我</Link> */}
 				<Advertise />
 			</div>
 		);
 	}
 }
-export default Blog;
+
+export default Articles;

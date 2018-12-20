@@ -1,8 +1,9 @@
 import React from "react";
 import axios from "axios";
 class Income extends React.Component {
-    constructor() {
-        super()
+    constructor(props) {
+        super(props)
+        const { cookies } = props;
         this.state = {
             lastAnswer: false,
             location: ["台北市", "新北市", "桃園市", "臺中市", "臺南市", "高雄市", "基隆市", "新竹市", "嘉義市", "新竹縣", "苗栗縣", "彰化縣", "南投縣", "雲林縣", "嘉義縣", "屏東縣", "宜蘭縣", "花蓮縣", "臺東縣", '澎湖縣'],
@@ -36,6 +37,7 @@ class Income extends React.Component {
     sendFirstStep(e) {
         console.log(e);
         console.log(this.state.answer);
+        // 把最後的結果post到後端，後端接response
         // axios.post("https://9500836e.ngrok.io/income", {
         //     result: this.state.answer
         // }).then(response => {
@@ -56,11 +58,11 @@ class Income extends React.Component {
 
     // 去下一頁的
     nextStep(e) {
+        // 借用來測試cookie有成功
+        // const { cookies } = this.props;
+        // cookies.set('name',"tiffany", { path: '/' });
         console.log(e);
-        // if (Object.values(this.state.answer).length !== (this.state.questionNumber)) {
-        //     alert("請確實填寫")
-        //     return;//挑出這個函式
-        // }
+        // 這邊要寫如果沒答要跳alert，有時間回來寫
         if (this.state.questionNumber < 8) {
             this.setState({
                 questionNumber: (this.state.questionNumber + 1),
