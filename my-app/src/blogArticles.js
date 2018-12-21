@@ -32,7 +32,7 @@ class Articles extends React.Component {
 	render() {
 		// 點到哪個category就render那個種類的文章，用componentdidmount
 		// 要sidebar跟廣告bar
-		console.log(this.props.match.params.category);
+		console.log(this);
 		return (
 			<div className="red col-lg-12 col-md-12 col-12 d-flex flex-wrap py-3 blog__box">
 				<Sidebar />

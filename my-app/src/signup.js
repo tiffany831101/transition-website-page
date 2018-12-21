@@ -6,6 +6,7 @@ class Signup extends React.Component {
     constructor(props) {
         super(props);
         const { cookies } = props;
+        console.log(this);
         this.state = {
             inputValue: {
                 email: "",
@@ -45,6 +46,7 @@ class Signup extends React.Component {
                 // });
                 if (response.data === "ok") {
                     alert("登入成功")
+                    console.log(this);
                     const { cookies } = this.props;
                     cookies.set('user', this.state.inputValue.nickname, { path: '/', maxAge: 60000 });
                     this.setState({

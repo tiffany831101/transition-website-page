@@ -1,9 +1,12 @@
 import React from "react";
 import axios from 'axios';
 import { Link, withRouter } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 class Signin extends React.Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+        console.log(props);
+        const { cookies } = props;
         this.state = {
             inputValue: {
                 email: "",
@@ -29,6 +32,7 @@ class Signin extends React.Component {
     }
     // submit answer to backend
     handleClick(e) {
+        const { cookies } = this.props;
         e.preventDefault();
         console.log(this.state.inputValue);
         axios
@@ -38,9 +42,13 @@ class Signin extends React.Component {
             .then(response => {
                 // 這邊有render出來爬回來的api
                 console.log(response.data);
-                if (response.data === "ok") {
+                if (response.data !== "pwderror" && response.data !== "accerror") {
                     // 代表登入成功
                     // 設定cookie
+                    cookies.set('user', response.data, { path: '/', maxAge: 60000 });
+                    this.setState({
+                        cookies: response.data,
+                    })
                 } else if (response.data === "pwderror") {
                     alert("密碼錯誤")
                 } else if (response.data === "accerror") {
@@ -76,9 +84,11 @@ class Signin extends React.Component {
 
 
                 </div>
-
+                {this.state.cookies && <Redirect to="/" />}
 
             </div>
+
+
 
 
         )

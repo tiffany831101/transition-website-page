@@ -34,9 +34,9 @@ class App extends Component {
 						<Nav />
 						<div className="container-fluid">
 							<Route exact path="/" render={() => <Home cookies={this.props.cookies} />} />
-							<Route path="/signin" render={() => <Signin cookies={this.props.cookies} />} />
+							<Route path="/signin" render={(props) => <Signin cookies={this.props.cookies} match={props} />} />
 							<Route path="/unemploy" render={() => <Unemploy cookies={this.props.cookies} />} />
-							<Route path="/signup" render={() => <Signup cookies={this.props.cookies} />} />
+							<Route path="/signup" render={(props) => <Signup cookies={this.props.cookies} />} />
 							{/* <Route exact path="/jobs" component={Job} /> */}
 							<Route exact path="/courses" render={() => <Courses cookies={this.props.cookies} />} />
 							<Route path="/income" render={() => <Income cookies={this.props.cookies} />} />

@@ -23,6 +23,7 @@ class Header extends React.Component {
 		} else {
 			this.setState({
 				cookie: true,
+				username: cookies.cookies.user,
 			})
 		}
 	}
@@ -92,15 +93,20 @@ class Header extends React.Component {
 								{!this.state.cookie && <Link className="nav-link px-0 main__color" name="signin" to="/signin">
 									登入
 								</Link>}
-								{this.state.cookie && <Link className="nav-link px-0 main__color" onClick={this.cleanCookie} name="signout" to="/">
-									登出
-								</Link>}
+
+								{this.state.cookie == true && <span className="nav-link px-0 user__name">
+									{this.state.username}
+								</span>}
 							</div>
 
 							<div className="signup__box col-lg-6 col-md-6 col-6 text-center px-0">
 								{!this.state.cookie && <Link className="nav-link px-0 main__color" name="singup" to="/signup">
 									註冊
 								</Link>}
+								{this.state.cookie && <Link className="nav-link px-0 main__color" onClick={this.cleanCookie} name="signout" to="/">
+									登出
+								</Link>}
+
 							</div>
 						</div>
 						<div className="col-lg-2 col-md-2 col-2 px-0 position-relative account__box">
