@@ -3,8 +3,9 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 import Sidebar from './blogSidebar';
 import Advertise from './blogAdvertise';
 class Blog extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		console.log(props);
 		this.state = {
 			blogContent: [
 				{
@@ -32,7 +33,7 @@ class Blog extends React.Component {
 	render() {
 		return (
 			<div className="red col-lg-12 col-md-12 col-12 d-flex flex-wrap py-3 blog__box">
-				<Sidebar />
+				<Sidebar info={this.props} />
 				<div className="mt-3 red col-lg-7 col-md-7 col-12 post__box">
 					<div className="blog__banner">
 						<img src="" alt="" />

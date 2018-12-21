@@ -2,8 +2,9 @@ import React from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
 
 class Sidebar extends React.Component {
-	constructor() {
-		super();
+	constructor(props) {
+		super(props);
+		console.log(this.props.info.url.match);//如果還沒有登入的時候cookie是undefined
 		this.state = {
 			clubName: [
 				{ english: 'womentalk', chinese: '婦女閒聊' },
@@ -20,6 +21,21 @@ class Sidebar extends React.Component {
 		this.handleClick = this.handleClick.bind(this);
 		this.showClub = this.showClub.bind(this);
 	}
+
+	componentDidMount() {
+		if (this.props.info.cookies.cookies.user === undefined) {
+			this.setState({
+				cookie: false,
+				nickname: "",
+			})
+		} else {
+			this.setState({
+				cookie: true,
+				nickname: this.props.info.cookies.cookies.user,
+			})
+		}
+	}
+
 
 	handleClick(e) {
 		let clubname = e.target.dataset.name;
@@ -41,13 +57,18 @@ class Sidebar extends React.Component {
 	}
 
 	render() {
+		console.log(this.state);
 		return (
 			<div className="col-lg-2 col-md-3 col-6 club__name__box">
 				<div className="post__article__box mt-3">
-					<Link to="/editBlog" className="px-3 py-2 post__article__btn">
+					{(this.state.cookie && this.props.info.url.match.path !== "/editBlog") && <Link to="/editBlog" className="px-3 py-2 post__article__btn">
 						<i className="fas fa-pen mr-2" />
 						發文
-					</Link>
+					</Link>}
+					{!this.state.cookie && <Link to="/signin" className="px-3 py-2 post__article__btn">
+						<i className="fas fa-pen mr-2" />
+						登入
+					</Link>}
 				</div>
 				<p className="mb-0 mt-3" onClick={this.showClub}>
 					<i

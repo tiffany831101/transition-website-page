@@ -33,34 +33,34 @@ class App extends Component {
 						<Header cookies={this.props.cookies} />
 						<Nav />
 						<div className="container-fluid">
-							<Route exact path="/" render={() => <Home cookies={this.props.cookies} />} />
-							<Route path="/signin" render={(props) => <Signin cookies={this.props.cookies} match={props} />} />
-							<Route path="/unemploy" render={() => <Unemploy cookies={this.props.cookies} />} />
-							<Route path="/signup" render={(props) => <Signup cookies={this.props.cookies} />} />
+							<Route exact path="/" render={(props) => <Home cookies={this.props.cookies} url={props} />} />
+							<Route path="/signin" render={(props) => <Signin cookies={this.props.cookies} url={props} />} />
+							<Route path="/unemploy" render={(props) => <Unemploy cookies={this.props.cookies} url={props} />} />
+							<Route path="/signup" render={(props) => <Signup cookies={this.props.cookies} url={props} />} />
 							{/* <Route exact path="/jobs" component={Job} /> */}
-							<Route exact path="/courses" render={() => <Courses cookies={this.props.cookies} />} />
-							<Route path="/income" render={() => <Income cookies={this.props.cookies} />} />
+							<Route exact path="/courses" render={(props) => <Courses cookies={this.props.cookies} url={props} />} />
+							<Route path="/income" render={(props) => <Income cookies={this.props.cookies} url={props} />} />
 							{/* blog首頁，可以render最新的幾筆就好 */}
-							<Route exact path="/blog" render={() => <Blog cookies={this.props.cookies} />} />
+							<Route exact path="/blog" render={(props) => <Blog cookies={this.props.cookies} url={props} />} />
 							{/* category首頁 */}
 							<Route
 								exact
 								path="/blog/:category"
-								render={() => <Articles cookies={this.props.cookies} />}
+								render={(props) => <Articles cookies={this.props.cookies} url={props} />}
 							/>
 							{/* 類別的第幾頁 */}
 							<Route
 								exact
 								path="/blog/:category/:page"
-								render={() => <Posts cookies={this.props.cookies} />}
+								render={(props) => <Posts cookies={this.props.cookies} url={props} />}
 							/>
 							{/* render哪一篇文章：/blog/posts/:id*/}
 							<Route
 								exact
 								path="/blog/whole/posts/:id"
-								render={() => <Post cookies={this.props.cookies} />}
+								render={(props) => <Post cookies={this.props.cookies} url={props} />}
 							/>
-							<Route exact path="/editBlog" render={() => <BlogEdit cookies={this.props.cookies} />} />
+							<Route exact path="/editBlog" render={(props) => <BlogEdit cookies={this.props.cookies} url={props} />} />
 						</div>
 					</div>
 				</Router>

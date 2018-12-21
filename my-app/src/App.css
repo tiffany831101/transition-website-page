@@ -588,3 +588,16 @@ button {
 .user__name {
 	color: #474747;
 }
+
+.blog__edit__submit {
+	background-color: #63c2c2;
+	color: white;
+	border: none;
+	transition: 0.3s;
+	cursor: pointer;
+}
+
+.blog__edit__submit:hover {
+	background-color: #acd5d3;
+	color: #474747;
+}
