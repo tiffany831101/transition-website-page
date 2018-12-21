@@ -1,4 +1,5 @@
 import React from "react";
+import axios from 'axios';
 import { Link, withRouter } from "react-router-dom";
 class Signin extends React.Component {
     constructor() {
@@ -28,10 +29,30 @@ class Signin extends React.Component {
     }
     // submit answer to backend
     handleClick(e) {
+        e.preventDefault();
         console.log(this.state.inputValue);
-        // axios.post("api",{
-        //     user:this.state.inputValue
-        // }).then()
+        axios
+            .post('http://localhost:3001/signin', {
+                signin: this.state.inputValue,
+            })
+            .then(response => {
+                // 這邊有render出來爬回來的api
+                console.log(response.data);
+                if (response.data === "ok") {
+                    // 代表登入成功
+                    // 設定cookie
+                } else if (response.data === "pwderror") {
+                    alert("密碼錯誤")
+                } else if (response.data === "accerror") {
+                    alert("email錯誤")
+                }
+                // this.setState({
+                //     result: response.data,
+                // });
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
     }
 
     render() {

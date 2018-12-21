@@ -3,11 +3,73 @@ import { HashRouter as Router, Route, Link } from 'react-router-dom';
 class Header extends React.Component {
 	constructor(props) {
 		super(props);
+		const { cookies } = props;
+		console.log(cookies.cookies.user);
+		this.state = {
+			cookie: false,
+		};
 
-		this.state = {};
+		this.cleanCookie = this.cleanCookie.bind(this);
+	}
+
+	// 第一次component炫染的時候
+	componentDidMount(prevProps, prevState) {
+		const { cookies } = this.props;
+		console.log(this.state);
+		if (cookies.cookies.user === undefined) {//代表沒有設cookie
+			this.setState({
+				cookie: false,
+			})
+		} else {
+			this.setState({
+				cookie: true,
+			})
+		}
+	}
+	// 第一次component炫染的時候，因為它可能不是馬上進網站就登入註冊，所以header可能已經被渲染很多次
+	componentDidUpdate(prevProps, prevState) {
+		const { cookies } = this.props;
+		console.log(this.state);
+		console.log(cookies.cookies.user == undefined);
+		console.log(cookies.cookies.user !== undefined);//代表還沒有設cookie
+		if (cookies.cookies.user === undefined) {
+			console.log("還沒註冊設定cookie")//這邊要顯示註冊登入
+		} else {
+			this.setState(prevState => {
+				if (prevState.cookie) {
+					console.log("已經設定過cookie成登入狀態不要設定了！")
+					return //代表已經是true了，就不要再設定state了，結束這個無窮迴圈
+				} else {
+					console.log("設定cookie...")
+					return {
+						cookie: true,
+						username: cookies.cookies.user,
+					}//如果是undefined代表還沒設定，所以不用再繼續跑
+				}
+
+			})
+			//這邊要顯示登出
+
+
+		}
+
+
+	}
+
+	cleanCookie() {
+		const { cookies } = this.props;
+		console.log("start to clean cookie...");
+		// 移除cookie
+		cookies.remove("user")
+		// 把狀態設成還沒登入，cookie is false
+		this.setState({
+			cookie: false,
+			username: "",
+		})
 	}
 
 	render() {
+		// console.log(this.state.cookies)
 
 		return (
 			<div className="headerBox flex-nowrap">
@@ -27,15 +89,18 @@ class Header extends React.Component {
 					<div className="headerBox__logo__left col-lg-3 col-md-6 col-6 d-flex justify-content-between">
 						<div className="d-flex justify-content-between col-lg-8 col-md-8 col-8">
 							<div className="signin__box col-lg-6 col-md-6 col-6 text-center px-0">
-								<Link className="nav-link px-0 main__color" name="signin" to="/signin">
+								{!this.state.cookie && <Link className="nav-link px-0 main__color" name="signin" to="/signin">
 									登入
-								</Link>
+								</Link>}
+								{this.state.cookie && <Link className="nav-link px-0 main__color" onClick={this.cleanCookie} name="signout" to="/">
+									登出
+								</Link>}
 							</div>
 
 							<div className="signup__box col-lg-6 col-md-6 col-6 text-center px-0">
-								<Link className="nav-link px-0 main__color" name="singup" to="/signup">
+								{!this.state.cookie && <Link className="nav-link px-0 main__color" name="singup" to="/signup">
 									註冊
-								</Link>
+								</Link>}
 							</div>
 						</div>
 						<div className="col-lg-2 col-md-2 col-2 px-0 position-relative account__box">
