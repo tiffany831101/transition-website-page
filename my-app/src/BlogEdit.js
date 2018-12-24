@@ -19,6 +19,7 @@ class BlogEdit extends React.Component {
 				{ english: 'eldertalk', chinese: '長青閒聊' },
 			],
 			answer: {
+				parent_id: 0,
 				nickname: cookies.user,
 				category: "womentalk",//設一個default值
 				//name存button裡面的name，value存button裡面的innerHTML

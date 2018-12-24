@@ -2,14 +2,19 @@ import React from 'react';
 import Sidebar from './blogSidebar';
 import Advertise from './blogAdvertise';
 import axios from 'axios';
+import { Link, withRouter } from 'react-router-dom';
 class Articles extends React.Component {
 	constructor(props) {
+
 		super(props);
 		this.state = {
 			blogContent: [],
+			// category: category,
+
 		};
 	}
-	componentDidUpdate() {
+	// 一開始mount這個物件就需要顯示
+	componentDidMount() {
 		const { match } = this.props.url;
 		const category = (match.params.category);
 		console.log(category);//可以拿到最新的url類別
@@ -20,20 +25,36 @@ class Articles extends React.Component {
 			.then(response => {
 				console.log(response.data);
 				this.setState((prevState) => {
-					if (prevState.blogContent.length == this.state.blogContent.length) {
-						console.log("跑到這行了")
-						// 不改變state
-						return
-					} else {
-						console.log("有改道")
-						return {
+					if (prevState.blogContent.length == 0) {
+						console.log("還沒新增過")
+						this.setState({
 							blogContent: response.data,
-						}
+						})
+					} else {
+						console.log("已經有資料了不要再新增了！")
+						return;
 					}
-
-
 				})
 
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+	}
+
+	componentDidUpdate(prevProps, prevState) {
+		if (prevProps == this.props) return
+		console.log("run update")
+		const { match } = this.props.url;
+		const category = (match.params.category);
+		axios
+			.post('http://localhost:3001/firstpage', {
+				category: category,
+			})
+			.then(response => {
+				this.setState((prevState) => ({
+					blogContent: response.data,
+				}))
 			})
 			.catch(function (error) {
 				console.log(error);
@@ -50,9 +71,9 @@ class Articles extends React.Component {
 					</div>
 					{this.state.blogContent.map(content => (
 						<div className="mt-3">
-							<h4>{content.title}</h4>
+							<Link to={"/blog/whole/posts/" + content.id}>{content.title}</Link>
 							<p>{content.time}</p>
-							<p>{content.content}</p>
+							<p>{content.comment}</p>
 							<div className="d-flex likebox pb-3">
 								<i className="fas fa-heart" style={{ color: 'red' }} />
 								<p className="ml-1">81000000</p>
@@ -60,6 +81,7 @@ class Articles extends React.Component {
 							</div>
 						</div>
 					))}
+					<div className="d-flex justify-content-center">1234</div>
 				</div>
 				<Advertise />
 			</div>

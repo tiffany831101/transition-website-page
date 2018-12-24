@@ -1,5 +1,7 @@
 import React from 'react';
 import { HashRouter as Router, Route, Link } from 'react-router-dom';
+import axios from 'axios';
+import { string } from 'prop-types';
 class Header extends React.Component {
 	constructor(props) {
 		super(props);
@@ -7,32 +9,66 @@ class Header extends React.Component {
 		console.log(cookies.cookies.user);
 		this.state = {
 			cookie: false,
+			friend: null,
+			close: true,
 		};
 
 		this.cleanCookie = this.cleanCookie.bind(this);
+		this.addFriend = this.addFriend.bind(this);
 	}
 
 	// 第一次component炫染的時候
 	componentDidMount(prevProps, prevState) {
 		const { cookies } = this.props;
 		console.log(this.state);
+
+
+
 		if (cookies.cookies.user === undefined) {//代表沒有設cookie
 			this.setState({
 				cookie: false,
 			})
 		} else {
+
 			this.setState({
 				cookie: true,
 				username: cookies.cookies.user,
 			})
+
+			axios
+				.post('http://localhost:3001/addfriend', {
+					nickname: cookies.cookies.user
+				})
+				.then(response => {
+					console.log(response.data);
+					// 這邊有render出來爬回來的api
+					if ((response.data[0]) !== undefined) {
+						this.setState({
+							friend: response.data[0].nickname,
+							close: false,
+						})
+					};
+
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+
+
 		}
+
 	}
 	// 第一次component炫染的時候，因為它可能不是馬上進網站就登入註冊，所以header可能已經被渲染很多次
 	componentDidUpdate(prevProps, prevState) {
+
+		if (!prevState.close && this.state.close) return;
+		// if(prevState==this.state){
+		// 	console.log("state沒有變走return")
+		// }
 		const { cookies } = this.props;
 		console.log(this.state);
-		console.log(cookies.cookies.user == undefined);
-		console.log(cookies.cookies.user !== undefined);//代表還沒有設cookie
+		// console.log(cookies.cookies.user == undefined);
+		// console.log(cookies.cookies.user !== undefined);//代表還沒有設cookie
 		if (cookies.cookies.user === undefined) {
 			console.log("還沒註冊設定cookie")//這邊要顯示註冊登入
 		} else {
@@ -47,13 +83,96 @@ class Header extends React.Component {
 						username: cookies.cookies.user,
 					}//如果是undefined代表還沒設定，所以不用再繼續跑
 				}
-
-			})
-			//這邊要顯示登出
-
-
+			})		//這邊要顯示登出
 		}
 
+		if (this.state.cookie) {
+			// console.log(this.state.friend, prevState.friend);
+
+			// if (this.state.friend !== null) return;
+			axios
+				.post('http://localhost:3001/addfriend', {
+					nickname: cookies.cookies.user
+				})
+				.then(response => {
+					console.log(response.data);
+					this.setState(prevState => {
+						if (prevState.friend) {
+							console.log("已經設定過friend成nickname不要設定了！")
+							return //代表已經是true了，就不要再設定state了，結束這個無窮迴圈
+						} else {
+							console.log("設定朋友ing")
+							if (response.data.length !== 0) {
+								return {
+									friend: response.data[0].nickname,
+									close: false,
+
+								}
+							} //如果是undefined代表還沒設定，所以不用再繼續跑
+						}
+					})
+					// 這邊有render出來爬回來的api
+					// console.log(response);
+					// if (response.data.length !== 0) {
+					// 	this.setState(prevState => {
+					// 		return ({
+					// 			friend: response.data[0].nickname,
+					// 			close: false,
+					// 		})
+
+
+					// 		// if (prevState == this.state) {
+					// 		// 	console.log("state沒有改變")
+					// 		// 	return
+					// 		// } else {
+					// 		// 	return ({
+					// 		// 		
+					// 		// 	})
+					// 	}
+					// 	)
+					// } else {
+					// 	return ({
+					// 		friend: null,
+					// 		close: true,
+					// 	})
+					// }
+				})
+				.catch(function (error) {
+					console.log(error);
+				});
+		}
+
+
+
+
+	}
+
+	addFriend(e) {
+		this.setState({
+			close: true,
+		})
+
+		let answer = e.target.value;
+		console.log(e.target.value);//把答案傳回去給後端
+		axios
+			.post('http://localhost:3001/agreeadd',
+				{
+					friend: this.state.friend,
+					agree: answer,
+					nickname: this.state.username,// agree: answer,
+				})
+			.then(response => {
+
+			})
+			.catch(function (error) {
+				console.log(error);
+			});
+
+
+		this.setState({
+			close: true,
+			friend: null,
+		})
 
 	}
 
@@ -70,7 +189,7 @@ class Header extends React.Component {
 	}
 
 	render() {
-		// console.log(this.state.cookies)
+		console.log(this.state)
 
 		return (
 			<div className="headerBox flex-nowrap">
@@ -127,6 +246,27 @@ class Header extends React.Component {
 								<Link className="nav-link d-block" name="urgent" to="/urgent">
 									履歷表
 								</Link>
+							</div>
+						</div>
+					</div>
+				</div>
+
+
+				<div class={"modal " + (this.state.close ? "d-none" : "d-block")} tabindex="-1" role="dialog">
+					<div class="modal-dialog" role="document">
+						<div class="modal-content">
+							<div class="modal-header">
+								<h5 class="modal-title">Modal title</h5>
+								<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+									<span aria-hidden="true">&times;</span>
+								</button>
+							</div>
+							<div class="modal-body">
+								<p>你願意和{this.state.friend}成為朋友嗎？</p>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-secondary" value="yes" onClick={this.addFriend}>確定</button>
+								<button type="button" class="btn btn-primary" value="no" onClick={this.addFriend}>不要</button>
 							</div>
 						</div>
 					</div>

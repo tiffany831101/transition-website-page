@@ -10,7 +10,8 @@ class Posts extends React.Component {
 	}
 
 	render() {
-		const { match } = this.props;
+		const { match } = this.props.url;
+		console.log(this.props);
 		// 讓你知道你在哪一頁
 		// post給server他在哪一個類別的第幾頁
 		// server傳回來
