@@ -3,6 +3,7 @@ import Sidebar from './blogSidebar';
 import Advertise from './blogAdvertise';
 import axios from 'axios';
 import { Link, withRouter } from 'react-router-dom';
+import Page from './page';
 class Articles extends React.Component {
 	constructor(props) {
 
@@ -81,10 +82,12 @@ class Articles extends React.Component {
 							</div>
 						</div>
 					))}
-					<div className="d-flex justify-content-center">1234</div>
+					<div className="d-flex justify-content-center"><Page url={this.props.url} /></div>
 				</div>
 				<Advertise />
 			</div>
+			// {pagination頁數}//需要幾頁抓總共有幾筆資料Math.ceil(total*100/100/5)
+			// 
 		);
 	}
 }

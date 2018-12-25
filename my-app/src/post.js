@@ -14,10 +14,12 @@ class Post extends React.Component {
 			blogContent: [],
 			parent_id: match.params.id,
 			nickname: cookies.user,
+			color: true,
 		}
 
 		this.handleChange = this.handleChange.bind(this);
 		this.handleClick = this.handleClick.bind(this);
+		this.toggleRed = this.toggleRed.bind(this);
 	}
 
 	// componentDidUpdate() {
@@ -92,9 +94,15 @@ class Post extends React.Component {
 				id: match.params.id,
 			})
 			.then(response => {
-				console.log(response.data);
+				// console.log(response.data);
 				this.setState({
-					child_cmmt: response.data,
+					child_cmmt: response.data.map((item, index) => {
+						return ({
+							...item,
+							color: false,
+							index: index,
+						})
+					}),
 				})
 			})
 			.catch(function (error) {
@@ -108,6 +116,25 @@ class Post extends React.Component {
 		})
 	}
 
+
+	toggleRed(e) {
+		console.log(this.state.child_cmmt);
+		let num = e.target.dataset.name;//代表陣列裡面第幾個
+		console.log(num);
+		this.setState({
+			child_cmmt: this.state.child_cmmt.map((item, index) => {
+				if ((index + 1) == num) {
+					return {
+						...item,
+						color: !item.color,
+					}
+				} else {
+					return item;
+				}
+			}
+			)
+		});
+	}
 
 
 
@@ -130,6 +157,7 @@ class Post extends React.Component {
 						console.log(response.data);
 						this.setState({
 							child_cmmt: response.data,
+							childInput: "",
 						})
 					})
 					.catch(function (error) {
@@ -171,12 +199,26 @@ class Post extends React.Component {
 					))}
 					{/* {子留言區塊} */}
 					<div className="child__cmmt__box green py-3">{this.state.child_cmmt && this.state.child_cmmt.map((child_cmmt, index) => (
-						<div className="">
 
-							<p>{child_cmmt.nickname}</p>
-							<span>{"B" + (++index)}</span>
-							<span>{" " + changeDate(child_cmmt.time)}</span>
-							<p>{child_cmmt.comment}</p>
+						<div className="child__cmmt py-2 px-4 mt-2">
+							<div className="d-flex justify-content-between">
+								<div className="d-flex">
+									<div className="col-lg-2 col-md-2 col-4 px-0">
+										<img className="img-fluid" src="https://megapx-assets.dcard.tw/61e253d5-a979-4acd-a81f-a9a49ead4f2f/full" alt="" />
+									</div>
+									<div className="ml-3">
+										<p className="mb-0">{child_cmmt.nickname}</p>
+										<span className="child__cmmt__floor">{"B" + (++index)}</span>
+										<span className="child__cmmt__floor">{" " + changeDate(child_cmmt.time)}</span>
+									</div>
+								</div>
+								<div>
+									<i class={"fas fa-heart " + (child_cmmt.color ? "heart-red" : "heart-grey")} onClick={this.toggleRed} data-name={index}></i>
+								</div>
+							</div>
+							<div className="mt-3">
+								<p>{child_cmmt.comment}</p>
+							</div>
 						</div>
 					))}</div>
 					<div>
