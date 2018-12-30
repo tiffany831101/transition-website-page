@@ -62,6 +62,13 @@ class Articles extends React.Component {
 			});
 	}
 	render() {
+		const changeDate = (date) => {
+			let newDATE = "";
+			for (let i = 5; i < 10; i++) {
+				newDATE += date[i];
+			}
+			return (newDATE.replace("-", "月") + "日");
+		}
 		console.log(this.state.blogContent);
 		return (
 			<div className="red col-lg-12 col-md-12 col-12 d-flex flex-wrap py-3 blog__box">
@@ -71,15 +78,19 @@ class Articles extends React.Component {
 						<img src="" alt="" />
 					</div>
 					{this.state.blogContent.map(content => (
-						<div className="mt-3">
+						<div className="mt-3 article__title">
 							<Link to={"/blog/whole/posts/" + content.id}>{content.title}</Link>
-							<p>{content.time}</p>
-							<p>{content.comment}</p>
+							<p>{changeDate(content.time)}</p>
+							<div className="main__cmmt__box">
+								{content.comment}
+							</div>
 							<div className="d-flex likebox pb-3">
 								<i className="fas fa-heart" style={{ color: 'red' }} />
 								<p className="ml-1">81000000</p>
 								<p className="ml-3">回應</p>
+
 							</div>
+							{/* <Child parent_id={content.id} /> */}
 						</div>
 					))}
 					<div className="d-flex justify-content-center"><Page url={this.props.url} /></div>

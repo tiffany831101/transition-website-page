@@ -631,3 +631,44 @@ button {
 .fa-heart:hover {
 	color: rgb(234, 92, 92);
 }
+
+
+.main__cmmt__box {
+	position: relative;
+	line-height: 20px;
+	max-height: 100px;
+	overflow: hidden;
+}
+
+
+
+.main__cmmt__box::after {
+	content: "...";
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding-left: 40px;
+	background: -webkit-linear-gradient(left, transparent, #fff 55%);
+	background: -o-linear-gradient(right, transparent, #fff 55%);
+	background: -moz-linear-gradient(right, transparent, #fff 55%);
+	background: linear-gradient(to right, transparent, #fff 55%);
+}
+
+.article__title a {
+	color: #474747;
+	text-decoration: none;
+	font-size: 1.25em;
+}
+
+.blog__pagination {
+	text-decoration: none;
+	color: white;
+	background-color: #acd5d3;
+	border: 1px solid white;
+}
+
+.blog__pagination:hover {
+	text-decoration: none;
+	color: white;
+	background-color: #63c2c2;
+}

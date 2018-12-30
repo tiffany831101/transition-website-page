@@ -222,8 +222,8 @@ class Post extends React.Component {
 						</div>
 					))}</div>
 					<div>
-						<input type="text" onChange={this.handleChange} value={this.state.childInput} />
-						<button onClick={this.handleClick}>送出留言</button>
+						<input type="text" onChange={this.handleChange} value={this.state.childInput} className="child_cmmt_input" />
+						<button onClick={this.handleClick}>送出</button>
 					</div>
 				</div>
 				<Advertise />

@@ -38,21 +38,21 @@ class Income extends React.Component {
         console.log(e);
         console.log(this.state.answer);
         // 把最後的結果post到後端，後端接response
-        // axios.post("https://9500836e.ngrok.io/income", {
-        //     result: this.state.answer
-        // }).then(response => {
-        //     this.setState({
-        //         result: response.data
-        //     })
+        axios.post("http://localhost:3001/incomeanswer", {
+            result: this.state.answer
+        }).then(response => {
+            // this.setState({
+            //     result: response.data
+            // })
 
-        // })
-        //     .catch(function (error) {
-        //         console.log(error);
-        //     });
-
-        this.setState({
-            lastAnswer: true,
         })
+            .catch(function (error) {
+                console.log(error);
+            });
+
+        // this.setState({
+        //     lastAnswer: true,
+        // })
     }
 
 

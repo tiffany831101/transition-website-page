@@ -10,7 +10,7 @@ class Home extends React.Component {
                     <div className="course__banner__shadow"></div>
                     <div className="home__banner__box col-lg-4 col-md-6 col-12 mt-3">
                         <div className="mt-3 text-center title">
-                            <h2>春再來</h2>
+                            <h2>Transition</h2>
                         </div>
                         <div className="slogan col-lg-12 col-md-12 col-12 flex-wrap text-center">
                             <p>這樣的故事可能發生在你我身旁，他們可能孤立無援，面對迷茫的人生手足無措，而我們期望作為照亮昏暗的亮燈，使其能有更明確的方向，充實自己
