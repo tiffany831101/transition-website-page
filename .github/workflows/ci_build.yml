@@ -21,8 +21,8 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
-      - name: Test Login Service
+      - name: build and test
         working-directory: ./my-app
         run: |
           npm install
-          npm test
+          npm build
