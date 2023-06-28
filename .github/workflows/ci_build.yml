@@ -25,4 +25,4 @@ jobs:
         working-directory: ./my-app
         run: |
           npm ci
-          npm build
+          npm run build
