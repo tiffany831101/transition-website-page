@@ -1,8 +1,6 @@
 name: Build and Test
 
 on:
-  push:
-    branches: ["master"]
   pull_request:
     branches: ["master"]
 
@@ -24,5 +22,5 @@ jobs:
       - name: build and test
         working-directory: ./my-app
         run: |
-          npm ci
+          npm install
           npm run build
