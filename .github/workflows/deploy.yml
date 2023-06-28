@@ -1,0 +1,40 @@
+name: Deploy to ECR
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      ECR_REPOSITORY: ${{ secrets.ECR_REPO }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set essential login AWS details to configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v1
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ secrets.AWS_REGION }}
+
+      - name: Build and tag the Docker images
+        working-directory: ./my-app
+        run: |
+          docker build -t transition_app .
+
+      - name: Login in ECS
+        run: |
+          aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws
+
+      - name: Tag Docker image
+        run: |
+          docker tag transition_app ${{ env.ECR_REPOSITORY }}/transition_app:$(date +%s)
+
+      - name: Push Docker image to ECR Public
+        run: |
+          docker push ${{ env.ECR_REPOSITORY }}/transition_app:$(date +%s)
