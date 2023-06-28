@@ -33,8 +33,8 @@ jobs:
 
       - name: Tag Docker image
         run: |
-          docker tag transition_app ${{ env.ECR_REPOSITORY }}/transition_website:$(date +%s)
+          docker tag transition_app ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_$(date +%s)
 
       - name: Push Docker image to ECR Public
         run: |
-          docker push ${{ env.ECR_REPOSITORY }}/transition_website:$(date +%s)
+          docker push ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_$(date +%s)
