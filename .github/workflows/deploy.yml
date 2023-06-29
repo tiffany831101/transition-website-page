@@ -5,6 +5,21 @@ on:
     branches:
       - master
 
+env:
+  AWS_REGION: us-east-1
+  ECR_REPOSITORY: ${{ secrets.ECR_REPO }} # set this to your Amazon ECR repository name
+  ECS_SERVICE: frontend_service # set this to your Amazon ECS service name
+  ECS_CLUSTER: MyEcsCluster # set this to your Amazon ECS cluster name
+  ECS_TASK_DEFINITION:
+    ./.aws/task-definition.json # set this to the path to your Amazon ECS task definition
+    # file, e.g. .aws/task-definition.json
+  CONTAINER_NAME:
+    transition_frontend # set this to the name of the container in the
+    # containerDefinitions section of your task definition
+
+permissions:
+  contents: read
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
@@ -39,26 +54,19 @@ jobs:
         run: |
           docker push ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_${{ github.sha }}
 
+      #
+      - name: Fill in the new image ID in the Amazon ECS task definition
+        id: task-def
+        uses: aws-actions/amazon-ecs-render-task-definition@v1
+        with:
+          task-definition: ${{ env.ECS_TASK_DEFINITION }}
+          container-name: ${{ env.CONTAINER_NAME }}
+          image: ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_${{ github.sha }}
 
-
-
-
-      - name: Create Task Definition Revision
-        id: create-task-definition
-        run: |
-          LATEST_IMAGE=transition_frontend_${{ github.sha }}
-          NEW_REVISION=$(aws ecs register-task-definition \
-            --family transition_frontend_app \
-            --container-definitions "[{\"name\":\"container_name\",\"image\":\"${LATEST_IMAGE}\"}]" \
-            --query 'taskDefinition.revision' \
-            --output text)
-          echo "::set-output name=new_revision::$NEW_REVISION"
-
-      - name: Update ECS Service
-        run: |
-          NEW_REVISION=$GITHUB_SHA
-          aws ecs update-service \
-            --cluster MyEcsCluster \
-            --service frontend_service \
-            --force-new-deployment \
-            --task-definition transition_frontend_app:$NEW_REVISION
+      - name: Deploy Amazon ECS task definition
+        uses: aws-actions/amazon-ecs-deploy-task-definition@v1
+        with:
+          task-definition: ${{ steps.task-def.outputs.task-definition }}
+          service: ${{ env.ECS_SERVICE }}
+          cluster: ${{ env.ECS_CLUSTER }}
+          wait-for-service-stability: true
