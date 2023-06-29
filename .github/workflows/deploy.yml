@@ -40,23 +40,25 @@ jobs:
           docker push ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_${{ github.sha }}
 
 
-      - name: Update ECS frontend app service
+
+
+
+      - name: Create Task Definition Revision
+        id: create-task-definition
         run: |
+          LATEST_IMAGE=transition_frontend_${{ github.sha }}
+          NEW_REVISION=$(aws ecs register-task-definition \
+            --family transition_frontend_app \
+            --container-definitions "$(jq '.containerDefinitions[0].image = $image' --arg image $LATEST_IMAGE task-definition.json)" \
+            --query 'taskDefinition.revision' \
+            --output text)
+          echo "::set-output name=new_revision::$NEW_REVISION"
+
+      - name: Update ECS Service
+        run: |
+          NEW_REVISION=$GITHUB_SHA
           aws ecs update-service \
             --cluster MyEcsCluster \
             --service frontend_service \
             --force-new-deployment \
-            --image ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_${{ github.sha }}
-
-      - name: Rollback on failure (Go back to previous commit)
-        if: failure()
-        run: |
-          # Get the previous GitHub SHA
-          PREVIOUS_SHA=$(git rev-parse HEAD^)
-
-          # Update ECS service with the previous SHA
-          aws ecs update-service \
-            --cluster MyEcsCluster \
-            --service frontend_service \
-            --force-new-deployment \
-            --image ${{ env.ECR_REPOSITORY }}/transition_website:transition_frontend_${PREVIOUS_SHA}
+            --task-definition transition_frontend_app:$NEW_REVISION
