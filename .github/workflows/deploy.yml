@@ -49,7 +49,7 @@ jobs:
           LATEST_IMAGE=transition_frontend_${{ github.sha }}
           NEW_REVISION=$(aws ecs register-task-definition \
             --family transition_frontend_app \
-            --container-definitions "$(jq '.containerDefinitions[0].image = $image' --arg image $LATEST_IMAGE task-definition.json)" \
+            --container-definitions "[{\"name\":\"container_name\",\"image\":\"${LATEST_IMAGE}\"}]" \
             --query 'taskDefinition.revision' \
             --output text)
           echo "::set-output name=new_revision::$NEW_REVISION"
