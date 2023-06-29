@@ -10,7 +10,7 @@ class Home extends React.Component {
           <div className="course__banner__shadow"></div>
           <div className="home__banner__box col-lg-4 col-md-6 col-12 mt-3">
             <div className="mt-3 text-center title">
-              <h2>Transition 12</h2>
+              <h2>Transition 14</h2>
             </div>
             <div className="slogan col-lg-12 col-md-12 col-12 flex-wrap text-center">
               <p>
