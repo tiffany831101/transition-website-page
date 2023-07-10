@@ -175,6 +175,7 @@ class Header extends React.Component {
     console.log("start to clean cookie...");
     // 移除cookie
     cookies.remove("user");
+    localStorage.clear();
     // 把狀態設成還沒登入，cookie is false
     this.setState({
       cookie: false,

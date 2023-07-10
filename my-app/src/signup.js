@@ -3,6 +3,7 @@ import { Link, withRouter } from "react-router-dom";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import { userSignup } from "./api";
+import { ValidateSignature } from "./utils";
 class Signup extends React.Component {
   constructor(props) {
     super(props);
@@ -35,6 +36,8 @@ class Signup extends React.Component {
   // submit answer to backend
   handleClick(e) {
     e.preventDefault();
+    const { cookies } = this.props;
+
     const params = this.state.inputValue;
     console.log("ppp: ", params);
     const { password, email, nickname } = params;
@@ -56,6 +59,16 @@ class Signup extends React.Component {
           }
         } else {
           localStorage.setItem("token", token);
+          localStorage.setItem("token", data.token);
+          const payload = ValidateSignature(data.token);
+          cookies.set("user", payload.nickname, {
+            path: "/",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+          });
+          this.setState({
+            cookies: payload.nickname,
+          });
+          window.location = "/";
         }
         // console.log(response);
       })

@@ -54,7 +54,10 @@ class Signin extends React.Component {
           localStorage.setItem("token", data.token);
           const payload = ValidateSignature(data.token);
           console.log("payload: ", payload);
-          cookies.set("user", payload.nickname, { path: "/", maxAge: 60000 });
+          cookies.set("user", payload.nickname, {
+            path: "/",
+            maxAge: 30 * 24 * 60 * 60 * 1000,
+          });
           this.setState({
             cookies: payload.nickname,
           });
