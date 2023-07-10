@@ -10,13 +10,13 @@ class Home extends React.Component {
           <div className="course__banner__shadow"></div>
           <div className="home__banner__box col-lg-4 col-md-6 col-12 mt-3">
             <div className="mt-3 text-center title">
-              <h2>Transition 19</h2>
+              {/* <h2>Transition 19</h2> */}
             </div>
             <div className="slogan col-lg-12 col-md-12 col-12 flex-wrap text-center">
-              <p>
-                這樣的故事可能發生在你我身旁，他們可能孤立無援，面對迷茫的人生手足無措，而我們期望作為照亮昏暗的亮燈，使其能有更明確的方向，充實自己
-                飛向人生的下個春天
-              </p>
+              <p>人生路上或許有荊棘，失業如風煙瞬息過。</p>
+              <p>別因困境而低頭，內心燃起堅定火。</p>
+              <p>相信自己的價值，展翅高飛如鳳凰。</p>
+              <p>失業只是暫時境，未來等待更美麗相。</p>
             </div>
             <div className="col-lg-12 col-md-12 col-md-12 text-center d-flex justify-content-center">
               <button className="home__banner__btn p-2 mb-3">
@@ -69,12 +69,13 @@ class Home extends React.Component {
                 className="mt-3"
                 src="https://trello-attachments.s3.amazonaws.com/5c1474d6853d5649f4a2f898/5c14d0656cb11845a18a9494/64b729034f71242ee70034e308012937/AllImage-03.png"
                 alt=""
+                height={"100px"}
               />
             </div>
           </div>
           <div className="col-lg-6 col-md-8 col-12 home__bottom__right">
-            <div className="mt-5">
-              <p>
+            <div className="mt-5" style={{ height: "0.5vh" }}>
+              <p style={{ fontSize: "20px" }}>
                 想到達明天 現在就要啟程 只有你能帶我走向未來的旅程 想到達明天
                 現在就要啟程 你能讓我看見 黑夜過去 天開始明亮的 過程
               </p>

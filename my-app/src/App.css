@@ -19,7 +19,7 @@ button {
 }
 
 .main__color {
-	color: #fdc5c4;
+	color: #474747;
 }
 
 .white {
@@ -44,40 +44,40 @@ button {
 }
 
 .headerBox__title p {
-	color: white;
+	color: #474747;
 }
 
 .headerBox__logo__right {
-	border-bottom: 1px solid #fdc5c4;
+	border-bottom: 1px solid #474747;
 }
 
 .headerBox__logo__middle h1 {
-	color: #fdc5c4;
-	font-family: Brush Script MT, Brush Script Std, cursive;
+	color: #474747;
+	/* font-family: Brush Script MT, Brush Script Std, cursive; */
 }
 
 .search {
-	color: #fdc5c4;
+	color: #474747;
 }
 
 .search__icon {
-	color: #fdc5c4;
+	color: #474747;
 }
 
 .signin__box a:hover {
-	border-bottom: 2px solid #fdc5c4;
+	border-bottom: 2px solid #474747;
 	color: black;
 	transition: 0.3s;
 }
 
 .signup__box a:hover {
-	border-bottom: 2px solid #fdc5c4;
+	border-bottom: 2px solid #474747;
 	color: black;
 	transition: 0.3s;
 }
 
 .headerBox__logo__left {
-	color: #fdc5c4;
+	color: #474747;
 }
 
 /* home */
@@ -170,7 +170,7 @@ button {
 }
 
 .signin__btn:hover {
-	background-color: #fb9593;
+	background-color: #474747;
 }
 
 .signin__box__bottom a {

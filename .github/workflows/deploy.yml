@@ -38,6 +38,13 @@ jobs:
           aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           aws-region: ${{ secrets.AWS_REGION }}
 
+      - name: Create production env file
+        run: |
+          cd ${{ github.workspace }}
+          # Create production environment files
+          echo "REACT_APP_JWT_APP_SECRET=${{ secrets.JWT_APP_SECRET }}" > my-app/.env
+          echo "REACT_APP_BASE_URL=${{ secrets.BASE_URL }}" >> my-app/.env
+
       - name: Notify start deploying process
         uses: rtCamp/action-slack-notify@v2
         env:
