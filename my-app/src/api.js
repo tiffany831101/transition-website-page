@@ -7,3 +7,4 @@ const request = axios.create({
 
 export const userSignup = (params) => request.post("/signup", params);
 export const userSignin = (params) => request.post("/signin", params);
+export const getGoogleAuthStatus = () => request.get("/auth/callback/success");

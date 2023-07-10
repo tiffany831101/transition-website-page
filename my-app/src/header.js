@@ -22,6 +22,11 @@ class Header extends React.Component {
   componentDidMount(prevProps, prevState) {
     const { cookies } = this.props;
     console.log(this.state);
+    console.log("cookies in header: ", cookies);
+
+    if (cookies.cookies.token) {
+      localStorage.setItem("token", cookies.cookies.token);
+    }
 
     if (cookies.cookies.user === undefined) {
       //代表沒有設cookie
@@ -175,6 +180,9 @@ class Header extends React.Component {
     console.log("start to clean cookie...");
     // 移除cookie
     cookies.remove("user");
+    cookies.remove("token");
+    // cookies.remove("google-auth-session.sig");
+    // cookies.remove("google-auth-session");
     localStorage.clear();
     // 把狀態設成還沒登入，cookie is false
     this.setState({

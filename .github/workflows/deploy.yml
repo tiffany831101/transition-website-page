@@ -44,6 +44,7 @@ jobs:
           # Create production environment files
           echo "REACT_APP_JWT_APP_SECRET=${{ secrets.JWT_APP_SECRET }}" > my-app/.env
           echo "REACT_APP_BASE_URL=${{ secrets.BASE_URL }}" >> my-app/.env
+          echo "REACT_APP_BACKEND_URL=${{ secrets.BACKEND_URL }}" >> my-app/.env
 
       - name: Notify start deploying process
         uses: rtCamp/action-slack-notify@v2

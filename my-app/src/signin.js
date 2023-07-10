@@ -2,7 +2,8 @@ import React from "react";
 import axios from "axios";
 import { Link, withRouter } from "react-router-dom";
 import { Redirect } from "react-router-dom";
-import { userSignin } from "./api";
+import { userSignin, getGoogleAuth } from "./api";
+import GoogleButton from "react-google-button";
 import { ValidateSignature } from "./utils";
 
 class Signin extends React.Component {
@@ -19,6 +20,7 @@ class Signin extends React.Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.handleClick = this.handleClick.bind(this);
+    this.handleClickGoogleSignin = this.handleClickGoogleSignin.bind(this);
   }
   // 抓到input框
   handleChange(e) {
@@ -32,6 +34,16 @@ class Signin extends React.Component {
         },
       };
     });
+  }
+
+  handleClickGoogleSignin() {
+    const backendURL = process.env.REACT_APP_BACKEND_URL;
+    window.location = `${backendURL}/auth`;
+    // getGoogleAuth()
+    //   .then(() => {})
+    //   .catch((err) => {
+    //     console.log("error: ", err);
+    //   });
   }
   // submit answer to backend
   handleClick(e) {
@@ -103,12 +115,27 @@ class Signin extends React.Component {
   render() {
     return (
       <div className="container-fluid">
-        <div className="d-flex justify-content-center mt-5 signin__box">
+        <div className="d-flex justify-content-center mt-3 signin__box">
           <form className="col-lg-6 col-md-8 col-12">
-            <h4 className="text-center sigin__title">會員登入</h4>
+            <h4 className="text-center sigin__title mb-3">會員登入</h4>
+            <div className="d-flex justify-content-center">
+              <GoogleButton
+                label="使用 Google 帳號登入"
+                onClick={() => {
+                  return this.handleClickGoogleSignin();
+                }}
+              />
+            </div>
+            <div className="d-flex justify-content-center">
+              <div class="horizontal-line w-75">
+                <span class="line"></span>
+                <span class="or">or</span>
+                <span class="line"></span>
+              </div>
+            </div>
             <input
               name="email"
-              className="d-block w-75 mx-auto mt-5 signin__input p-2"
+              className="d-block w-75 mx-auto signin__input p-2"
               type="email"
               placeholder="請輸入電子信箱"
               value={this.state.inputValue.email}
@@ -125,18 +152,20 @@ class Signin extends React.Component {
 
             <button
               type="submit"
-              className="signin__btn w-75 d-block mx-auto mt-5 p-2"
+              className="signin__btn w-75 d-block mx-auto mt-3 p-2"
               onClick={this.handleClick}
             >
               登入
             </button>
           </form>
         </div>
-        <div className="signin__box__bottom mt-3 text-center">
-          <Link className="d-block" name="home" to="/">
+
+        <div className="signin__box__bottom mt-2 text-center">
+          {/* <Link className="d-block" name="home" to="/">
             回到首頁
-          </Link>
-          <Link className="d-block my-2" name="signup" to="/signup">
+          </Link> */}
+
+          <Link className="d-block my-1" name="signup" to="/signup">
             尚未註冊點我
           </Link>
           <Link className="d-block" name="forgetpwd" to="/forgetpwd">

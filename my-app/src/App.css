@@ -183,6 +183,25 @@ button {
 	color: #fb9593;
 }
 
+.horizontal-line {
+  display: flex;
+  align-items: center;
+  text-align: center;
+  margin: 20px 0;
+}
+
+.line {
+  flex: 1;
+  height: 1px;
+  background-color: #aaaaab;
+}
+
+.or {
+  margin: 0 10px;
+  /* font-weight: bold; */
+  color: #474747;
+}
+
 .umemploy__box {
 	display: none;
 }
