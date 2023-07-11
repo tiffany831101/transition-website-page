@@ -8,3 +8,10 @@ export const ValidateSignature = (token) => {
     throw err;
   }
 };
+
+export const isValidPassword = (password) => {
+  const pass = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/.test(password);
+  console.log("pass: ", pass);
+  return pass;
+  // return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d).+$/.test(password);
+};

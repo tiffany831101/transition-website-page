@@ -5,6 +5,14 @@ import { Redirect } from "react-router-dom";
 import { userSignin, getGoogleAuth } from "./api";
 import GoogleButton from "react-google-button";
 import { ValidateSignature } from "./utils";
+import isEmail from "validator/lib/isEmail";
+import Box from "@mui/material/Box";
+import Button from "@mui/material/Button";
+
+import TextField from "@mui/material/TextField";
+import { AccountCircle, Key } from "@mui/icons-material";
+import Backdrop from "@mui/material/Backdrop";
+import CircularProgress from "@mui/material/CircularProgress";
 
 class Signin extends React.Component {
   constructor(props) {
@@ -15,6 +23,8 @@ class Signin extends React.Component {
       inputValue: {
         email: "",
         password: "",
+        emailFormat: true,
+        isLoading: false,
       },
     };
 
@@ -26,14 +36,38 @@ class Signin extends React.Component {
   handleChange(e) {
     let valueType = e.target.name;
     let value = e.target.value;
-    this.setState((prevState) => {
-      return {
-        inputValue: {
-          ...prevState.inputValue,
-          [valueType]: value,
-        },
-      };
-    });
+    const validateEmailFormat = isEmail(value);
+
+    if (valueType === "email") {
+      this.setState((prevState) => {
+        return {
+          inputValue: {
+            ...prevState.inputValue,
+            [valueType]: value,
+            emailFormat: validateEmailFormat,
+          },
+        };
+      });
+    } else {
+      this.setState((prevState) => {
+        return {
+          inputValue: {
+            ...prevState.inputValue,
+            [valueType]: value,
+          },
+        };
+      });
+    }
+
+    // this.setState((prevState) => {
+    //   return {
+    //     inputValue: {
+    //       ...prevState.inputValue,
+    //       [valueType]: value,
+    //       emailFormat: validateEmailFormat,
+    //     },
+    //   };
+    // });
   }
 
   handleClickGoogleSignin() {
@@ -47,12 +81,50 @@ class Signin extends React.Component {
   }
   // submit answer to backend
   handleClick(e) {
+    this.setState((prevState) => {
+      return {
+        inputValue: {
+          ...prevState.inputValue,
+          isLoading: true,
+        },
+      };
+    });
     const { cookies } = this.props;
     e.preventDefault();
 
-    const params = this.state.inputValue;
+    if (
+      !this.state.inputValue.emailFormat ||
+      this.state.inputValue.email === "" ||
+      this.state.inputValue.password === ""
+    ) {
+      alert("pls enter the email and password");
+
+      this.setState((prevState) => {
+        return {
+          inputValue: {
+            ...prevState.inputValue,
+            isLoading: false,
+          },
+        };
+      });
+      return;
+    }
+
+    const params = {
+      email: this.state.inputValue.email,
+      password: this.state.inputValue.password,
+    };
+
     userSignin(params)
       .then((response) => {
+        this.setState((prevState) => {
+          return {
+            inputValue: {
+              ...prevState.inputValue,
+              isLoading: false,
+            },
+          };
+        });
         const { data } = response.data;
         if (data.token === null && data.id === -1) {
           if (data.reason === "INVALID_EMAIL") {
@@ -80,6 +152,14 @@ class Signin extends React.Component {
         }
       })
       .catch((error) => {
+        this.setState((prevState) => {
+          return {
+            inputValue: {
+              ...prevState.inputValue,
+              isLoading: false,
+            },
+          };
+        });
         // Handle the error
         console.log(error);
         // ...
@@ -115,9 +195,131 @@ class Signin extends React.Component {
   render() {
     return (
       <div className="container-fluid">
+        <Backdrop
+          sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 1 }}
+          open={this.state.inputValue.isLoading}
+          // onClick={handleClose}
+        >
+          <CircularProgress color="inherit" />
+        </Backdrop>
         <div className="d-flex justify-content-center mt-3 signin__box">
           <form className="col-lg-6 col-md-8 col-12">
-            <h4 className="text-center sigin__title mb-3">會員登入</h4>
+            <h4 className="text-center sigin__title mb-5">會員登入</h4>
+
+            {/* <input
+              name="email"
+              className="d-block w-75 mx-auto signin__input p-2"
+              type="email"
+              placeholder="請輸入電子信箱"
+              value={this.state.inputValue.email}
+              onChange={this.handleChange}
+            /> */}
+            {/* {this.state.inputValue.emailFormat === false && (
+              <span>請輸入正確的 email 格式</span>
+            )} */}
+            <div
+              className="d-flex align-items-center justify-content-center mt-3"
+              style={{ height: "8vh" }}
+            >
+              <div style={{ width: "30vw" }}>
+                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                  <AccountCircle
+                    sx={{
+                      fontSize: "2rem",
+                      color: "action.active",
+                      mr: 1,
+                      my: 0.5,
+                    }}
+                  />
+                  <TextField
+                    error={!this.state.inputValue.emailFormat}
+                    fullWidth
+                    name="email"
+                    id="input-with-sx"
+                    label={
+                      this.state.inputValue.emailFormat
+                        ? "Email"
+                        : "Invalid Email"
+                    }
+                    variant="standard"
+                    type="email"
+                    value={this.state.inputValue.email}
+                    onChange={this.handleChange}
+                    helperText={
+                      this.state.inputValue.emailFormat
+                        ? ""
+                        : "Please enter valid email address"
+                    }
+                    // size="normal"
+                  />
+                </Box>
+              </div>
+            </div>
+            <div
+              className="d-flex align-items-center justify-content-center mt-4"
+              style={{ height: "8vh" }}
+            >
+              <div style={{ width: "30vw" }}>
+                <Box sx={{ display: "flex", alignItems: "flex-end" }}>
+                  <Key
+                    sx={{
+                      fontSize: "2rem",
+                      color: "action.active",
+                      mr: 1,
+                      my: 0.5,
+                    }}
+                  />
+                  <TextField
+                    fullWidth
+                    name="password"
+                    id="standard-password-input"
+                    label="Password"
+                    variant="standard"
+                    type="password"
+                    value={this.state.inputValue.password}
+                    onChange={this.handleChange}
+                    // size="normal"
+                  />
+                </Box>
+              </div>
+            </div>
+            {/* <input
+              name="password"
+              className="d-block w-75 mx-auto mt-4 signin__input p-2"
+              type="password"
+              placeholder="請輸入密碼"
+              value={this.state.inputValue.password}
+              onChange={this.handleChange}
+            /> */}
+
+            {/* <button
+              type="submit"
+              className="signin__btn w-75 d-block mx-auto mt-3 p-2"
+              onClick={this.handleClick}
+            >
+              登入
+            </button> */}
+            <div className="d-flex justify-content-center">
+              <Button
+                type="submit"
+                variant="contained"
+                className="mx-auto mt-3 p-2"
+                style={{ backgroundColor: "#acd5d3", color: "#474747" }}
+                onClick={this.handleClick}
+                // size="medium"
+              >
+                登入
+              </Button>
+            </div>
+
+            <div className="d-flex justify-content-center">
+              <div class="horizontal-line w-75">
+                <span class="line"></span>
+                <span class="or">or</span>
+                <span class="line"></span>
+              </div>
+            </div>
+
             <div className="d-flex justify-content-center">
               <GoogleButton
                 label="使用 Google 帳號登入"
@@ -126,50 +328,29 @@ class Signin extends React.Component {
                 }}
               />
             </div>
-            <div className="d-flex justify-content-center">
-              <div class="horizontal-line w-75">
-                <span class="line"></span>
-                <span class="or">or</span>
-                <span class="line"></span>
-              </div>
-            </div>
-            <input
-              name="email"
-              className="d-block w-75 mx-auto signin__input p-2"
-              type="email"
-              placeholder="請輸入電子信箱"
-              value={this.state.inputValue.email}
-              onChange={this.handleChange}
-            />
-            <input
-              name="password"
-              className="d-block w-75 mx-auto mt-4 signin__input p-2"
-              type="password"
-              placeholder="請輸入密碼"
-              value={this.state.inputValue.password}
-              onChange={this.handleChange}
-            />
-
-            <button
-              type="submit"
-              className="signin__btn w-75 d-block mx-auto mt-3 p-2"
-              onClick={this.handleClick}
-            >
-              登入
-            </button>
           </form>
         </div>
 
-        <div className="signin__box__bottom mt-2 text-center">
+        <div className="mt-2 text-center">
           {/* <Link className="d-block" name="home" to="/">
             回到首頁
           </Link> */}
 
-          <Link className="d-block my-1" name="signup" to="/signup">
-            尚未註冊點我
+          <Link
+            style={{ border: "none" }}
+            className="d-block my-1"
+            name="signup"
+            to="/signup"
+          >
+            <span style={{ fontSize: "10px" }}>尚未註冊點我</span>
           </Link>
-          <Link className="d-block" name="forgetpwd" to="/forgetpwd">
-            忘記密碼
+          <Link
+            style={{ border: "none" }}
+            className="d-block"
+            name="forgetpwd"
+            to="/forgetpwd"
+          >
+            <span style={{ fontSize: "10px" }}>忘記密碼</span>
           </Link>
         </div>
         {this.state.cookies && <Redirect to="/" />}
