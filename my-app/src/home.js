@@ -16,7 +16,7 @@ class Home extends React.Component {
               <p>人生路上或許有荊棘，失業如風煙瞬息過。</p>
               <p>別因困境而低頭，內心燃起堅定火。</p>
               <p>相信自己的價值，展翅高飛如鳳凰。</p>
-              <p>失業只是暫時境，未來等待更美麗相。</p>
+              <p>失業只是暫時境，等待更美好相遇。</p>
             </div>
             <div className="col-lg-12 col-md-12 col-md-12 text-center d-flex justify-content-center">
               <button className="home__banner__btn p-2 mb-3">
