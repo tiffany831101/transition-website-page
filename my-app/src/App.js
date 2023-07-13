@@ -18,6 +18,7 @@ import { withCookies } from "react-cookie";
 import { CookiesProvider, Cookies } from "react-cookie";
 import { instanceOf } from "prop-types";
 import AuthPage from "./AuthPage";
+import Resume from "./pages/Resume/Resume";
 class App extends Component {
   static propTypes = {
     cookies: instanceOf(Cookies).isRequired,
@@ -63,6 +64,12 @@ class App extends Component {
                 path="/signup"
                 render={(props) => (
                   <Signup cookies={this.props.cookies} url={props} />
+                )}
+              />
+              <Route
+                path="/resume"
+                render={(props) => (
+                  <Resume cookies={this.props.cookies} url={props} />
                 )}
               />
               {/* <Route exact path="/jobs" component={Job} /> */}
