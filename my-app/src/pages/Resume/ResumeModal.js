@@ -30,6 +30,8 @@ import Fab from "@mui/material/Fab";
 import Select from "@mui/material/Select";
 import DeleteIcon from "@mui/icons-material/Delete";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
+import ResumePreviewTable from "./ResumePreviewTable";
+import ResumePreviewInfo from "./ResumePreviewInfo";
 
 const steps = ["基本資料", "工作經歷", "學歷", "證照"];
 
@@ -76,125 +78,129 @@ const StepOneForm = ({
             </Button>
           </div>
         </div>
-        <TextField
-          required
-          id="first_name"
-          name="first_name"
-          label="First Name"
-          defaultValue=""
-          variant="standard"
-          onChange={handleChange}
-          value={modalData.first_name}
-        />
-        <TextField
-          required
-          id="last_name"
-          name="last_name"
-          label="Last Name"
-          defaultValue=""
-          variant="standard"
-          onChange={handleChange}
-          value={modalData.last_name}
-        />
-        <TextField
-          required
-          id="country"
-          label="Country"
-          name="country"
-          defaultValue=""
-          variant="standard"
-          onChange={handleChange}
-          value={modalData.country}
-        />
-        <TextField
-          required
-          id="city"
-          name="city"
-          label="City"
-          defaultValue=""
-          variant="standard"
-          onChange={handleChange}
-          value={modalData.city}
-        />
-        <TextField
-          required
-          id="job_title"
-          name="job_title"
-          label="Preferred Job Title"
-          defaultValue=""
-          variant="standard"
-          onChange={handleChange}
-          value={modalData.job_title}
-        />
-
-        <div className="d-block mt-3">
+        <div>
           <TextField
-            style={{ width: "100%" }}
-            id="self_intro_short"
-            label="Self Introduction(Brief)"
-            name="self_intro_short"
-            multiline
-            rows={5}
-            defaultValue=""
-            variant="filled"
-            value={modalData.self_intro_short}
-            onChange={handleChange}
-          />
-        </div>
-        <div className="d-flex mt-3 align-items-center">
-          <FacebookIcon style={{ fontSize: "2rem", color: "#1877F2" }} />
-          <TextField
-            style={{ width: "60%" }}
-            id="city"
-            label="Facebook"
-            name="Facebook"
+            required
+            id="first_name"
+            name="first_name"
+            label="First Name"
             defaultValue=""
             variant="standard"
-            value={modalData.Facebook}
             onChange={handleChange}
+            value={modalData.first_name}
           />
-        </div>
-        <div className="d-flex mt-3 align-items-center">
-          <GitHubIcon style={{ fontSize: "2rem" }} />
-
           <TextField
-            style={{ width: "60%" }}
-            id="city"
-            label="GitHub"
-            name="GitHub"
+            required
+            id="last_name"
+            name="last_name"
+            label="Last Name"
             defaultValue=""
             variant="standard"
-            value={modalData.GitHub}
             onChange={handleChange}
+            value={modalData.last_name}
           />
-        </div>
-        <div className="d-flex mt-3 align-items-center">
-          <LinkedInIcon style={{ fontSize: "2rem", color: "#0072b1" }} />
-
+          <div className="d-block">
+            <TextField
+              required
+              id="country"
+              label="Country"
+              name="country"
+              defaultValue=""
+              variant="standard"
+              onChange={handleChange}
+              value={modalData.country}
+            />
+            <TextField
+              required
+              id="city"
+              name="city"
+              label="City"
+              defaultValue=""
+              variant="standard"
+              onChange={handleChange}
+              value={modalData.city}
+            />
+          </div>
           <TextField
-            style={{ width: "60%" }}
-            id="city"
-            label="LinkedIn"
-            name="LinkedIn"
+            required
+            id="job_title"
+            name="job_title"
+            label="Preferred Job Title"
             defaultValue=""
             variant="standard"
-            value={modalData.LinkedIn}
             onChange={handleChange}
+            value={modalData.job_title}
           />
-        </div>
-        <div className="d-flex mt-3 align-items-center">
-          <GoogleIcon style={{ fontSize: "2rem", color: "#DB4437" }} />
 
-          <TextField
-            name="Gmail"
-            style={{ width: "60%" }}
-            id="Gmail"
-            label="Gmail"
-            defaultValue=""
-            variant="standard"
-            value={modalData.Gmail}
-            onChange={handleChange}
-          />
+          <div className="d-block mt-3">
+            <TextField
+              style={{ width: "100%" }}
+              id="self_intro_short"
+              label="Self Introduction(Brief)"
+              name="self_intro_short"
+              multiline
+              rows={5}
+              defaultValue=""
+              variant="filled"
+              value={modalData.self_intro_short}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex mt-3 align-items-center">
+            <FacebookIcon style={{ fontSize: "2rem", color: "#1877F2" }} />
+            <TextField
+              style={{ width: "60%" }}
+              id="city"
+              label="Facebook"
+              name="Facebook"
+              defaultValue=""
+              variant="standard"
+              value={modalData.Facebook}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex mt-3 align-items-center">
+            <GitHubIcon style={{ fontSize: "2rem" }} />
+
+            <TextField
+              style={{ width: "60%" }}
+              id="city"
+              label="GitHub"
+              name="GitHub"
+              defaultValue=""
+              variant="standard"
+              value={modalData.GitHub}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex mt-3 align-items-center">
+            <LinkedInIcon style={{ fontSize: "2rem", color: "#0072b1" }} />
+
+            <TextField
+              style={{ width: "60%" }}
+              id="city"
+              label="LinkedIn"
+              name="LinkedIn"
+              defaultValue=""
+              variant="standard"
+              value={modalData.LinkedIn}
+              onChange={handleChange}
+            />
+          </div>
+          <div className="d-flex mt-3 align-items-center">
+            <GoogleIcon style={{ fontSize: "2rem", color: "#DB4437" }} />
+
+            <TextField
+              name="Gmail"
+              style={{ width: "60%" }}
+              id="Gmail"
+              label="Gmail"
+              defaultValue=""
+              variant="standard"
+              value={modalData.Gmail}
+              onChange={handleChange}
+            />
+          </div>
         </div>
       </Box>
     </>
@@ -212,7 +218,7 @@ const StepTwoForm = ({
     month.push(i);
   }
   const year = [];
-  for (let i = 1950; i <= 2023; i++) {
+  for (let i = 2023; i >= 1950; i--) {
     year.push(i);
   }
 
@@ -451,7 +457,7 @@ const StepThreeForm = ({
     month.push(i);
   }
   const year = [];
-  for (let i = 1950; i <= 2023; i++) {
+  for (let i = 2023; i >= 1950; i--) {
     year.push(i);
   }
 
@@ -509,6 +515,16 @@ const StepThreeForm = ({
                 onChange={(e) => handleChange(e, idx)}
                 value={ele["school_name"]}
               />
+
+              <TextField
+                id="school_major"
+                name="school_major"
+                label="Major Subject"
+                defaultValue=""
+                variant="standard"
+                onChange={(e) => handleChange(e, idx)}
+                value={ele["school_major"]}
+              />
               <TextField
                 id="school_location"
                 name="school_location"
@@ -550,7 +566,7 @@ const StepThreeForm = ({
                     <MenuItem value={20}>Twenty</MenuItem>
                     <MenuItem value={30}>Thirty</MenuItem> */}
                   </Select>
-                  <FormHelperText>Invalid Job Period</FormHelperText>
+                  <FormHelperText>Invalid Period</FormHelperText>
                 </FormControl>
                 <FormControl
                   error={checkYearMonthValid(
@@ -580,7 +596,7 @@ const StepThreeForm = ({
                       <MenuItem value={ele}>{ele}</MenuItem>
                     ))}
                   </Select>
-                  <FormHelperText>Invalid Job Period</FormHelperText>
+                  <FormHelperText>Invalid Period</FormHelperText>
                 </FormControl>
               </div>
 
@@ -616,7 +632,7 @@ const StepThreeForm = ({
                       <MenuItem value={ele}>{ele}</MenuItem>
                     ))}
                   </Select>
-                  <FormHelperText>Invalid Job Period</FormHelperText>
+                  <FormHelperText>Invalid Period</FormHelperText>
                 </FormControl>
 
                 <FormControl
@@ -647,7 +663,7 @@ const StepThreeForm = ({
                       <MenuItem value={ele}>{ele}</MenuItem>
                     ))}
                   </Select>
-                  <FormHelperText>Invalid Job Period</FormHelperText>
+                  <FormHelperText>Invalid Period</FormHelperText>
                 </FormControl>
 
                 <FormGroup>
@@ -668,16 +684,136 @@ const StepThreeForm = ({
               <div className="d-block">
                 <TextField
                   style={{ width: "100%" }}
-                  id="Job Despcription"
-                  name="job_des"
-                  label="Job Despcription"
+                  id="School Despcription"
+                  name="school_des"
+                  label="School Despcription"
                   multiline
                   rows={5}
                   defaultValue=""
                   variant="filled"
                   onChange={(e) => handleChange(e, idx)}
-                  value={ele["job_des"]}
+                  value={ele["school_des"]}
                 />
+              </div>
+            </div>
+          </Box>
+        );
+      })}
+    </Box>
+  );
+};
+
+const StepFourForm = ({
+  data,
+  addNewCertificate,
+  handleChange,
+  handleDelete,
+}) => {
+  const month = [];
+  for (let i = 1; i <= 12; i++) {
+    month.push(i);
+  }
+  const year = [];
+  for (let i = 2023; i >= 1950; i--) {
+    year.push(i);
+  }
+
+  return (
+    <Box style={{ minHeight: "300px", minWidth: "500px" }}>
+      <Fab
+        variant="extended"
+        size="small"
+        color="primary"
+        aria-label="add"
+        onClick={addNewCertificate}
+      >
+        <AddIcon />
+        Add
+      </Fab>
+
+      {data.map((ele, idx) => {
+        return (
+          <Box key={idx} className="mt-3">
+            <div>
+              {/* <p
+                style={{
+                  textAlign: "center",
+                  fontSize: "1.5rem",
+                  fontWeight: "bolder",
+                }}
+              >
+                Job {idx + 1}
+              </p> */}
+              <Divider className="my-2">
+                <Chip
+                  label={`Certificate ${idx + 1}`}
+                  onDelete={(e) => handleDelete(idx)}
+                  deleteIcon={<DeleteIcon fontSize="large" id={idx} />}
+                  variant="filled"
+                  // onClick={(e, idx) => handleDelete(e, idx)}
+                />
+              </Divider>
+
+              <TextField
+                id="cert_name"
+                name="cert_name"
+                label="Certificate Name"
+                defaultValue=""
+                variant="standard"
+                onChange={(e) => handleChange(e, idx)}
+                value={ele["cert_name"]}
+              />
+              <TextField
+                id="cert_org"
+                name="cert_org"
+                label="Certificate Org"
+                defaultValue=""
+                variant="standard"
+                onChange={(e) => handleChange(e, idx)}
+                value={ele["cert_org"]}
+              />
+
+              {/* start mon and year */}
+              <div className="d-block">
+                <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-standard-label">
+                    Qualified Month
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={ele["cert_month"]}
+                    label="Qualified Month"
+                    onChange={(e) => handleChange(e, idx)}
+                    name="cert_month"
+                  >
+                    {month.map((ele, idx) => (
+                      <MenuItem value={ele}>{ele}</MenuItem>
+                    ))}
+                    {/* <MenuItem value={10}>Ten</MenuItem>
+                    <MenuItem value={20}>Twenty</MenuItem>
+                    <MenuItem value={30}>Thirty</MenuItem> */}
+                  </Select>
+                </FormControl>
+                <FormControl variant="standard" sx={{ m: 1, minWidth: 120 }}>
+                  <InputLabel id="demo-simple-select-standard-label">
+                    Qualifed Year
+                  </InputLabel>
+                  <Select
+                    labelId="demo-simple-select-label"
+                    id="demo-simple-select"
+                    value={ele["cert_year"]}
+                    label="Qualifed Year"
+                    onChange={(e) => handleChange(e, idx)}
+                    name="cert_year"
+
+                    // onChange={handleChange}
+                  >
+                    {year.map((ele, idx) => (
+                      <MenuItem value={ele}>{ele}</MenuItem>
+                    ))}
+                  </Select>
+                </FormControl>
               </div>
             </div>
           </Box>
@@ -691,7 +827,7 @@ class CreateResume extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeStep: 0,
+      activeStep: this.props.activeStep,
       skipped: new Set(),
       formData: {},
     };
@@ -701,6 +837,8 @@ class CreateResume extends Component {
     this.handleChangeEdu = this.handleChangeEdu.bind(this);
     this.handleDeleteEdu = this.handleDeleteEdu.bind(this);
     this.handleFileUpload = this.handleFileUpload.bind(this);
+    this.handleChangeCert = this.handleChangeCert.bind(this);
+    this.handleDeleteCert = this.handleDeleteCert.bind(this);
   }
 
   isStepOptional(step) {
@@ -734,7 +872,15 @@ class CreateResume extends Component {
 
   handleFileUpload(e) {
     const file = e.target.files[0];
-    console.log(file);
+
+    this.props.setPostedImage(file);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    // for (var [key, value] of formData.entries()) {
+    //   console.log(key, value);
+    // }
 
     const reader = new FileReader();
 
@@ -797,6 +943,22 @@ class CreateResume extends Component {
     });
   }
 
+  handleChangeCert(e, idx) {
+    let type = e.target.name;
+
+    let value = e.target.value;
+    let prevCert = this.props.modalData.certificate;
+
+    prevCert[idx][type] = value;
+
+    // console.log(e, idx);
+
+    this.props.setModalData({
+      ...this.props.modalData,
+      certificate: prevCert,
+    });
+  }
+
   handleDelete(idx) {
     let currExp = this.props.modalData.experience;
     currExp.splice(idx, 1);
@@ -804,6 +966,16 @@ class CreateResume extends Component {
     this.props.setModalData({
       ...this.props.modalData,
       experience: currExp,
+    });
+  }
+
+  handleDeleteCert(idx) {
+    let currCert = this.props.modalData.certificate;
+    currCert.splice(idx, 1);
+
+    this.props.setModalData({
+      ...this.props.modalData,
+      certificate: currCert,
     });
   }
 
@@ -850,10 +1022,12 @@ class CreateResume extends Component {
   render() {
     const { activeStep } = this.state;
 
+    const preview = ["education", "experience", "certificate"];
+    console.log("ac: ", activeStep);
     return (
       <Dialog
-        // fullWidth
-        // maxWidth={300}
+        fullWidth
+        maxWidth={activeStep === steps.length ? "lg" : "sm"}
         open={this.props.showCreateModal}
         onClose={this.props.handleCloseCreateModal}
         aria-labelledby="modal-modal-title"
@@ -891,12 +1065,45 @@ class CreateResume extends Component {
           </Stepper>
           {activeStep === steps.length ? (
             <React.Fragment>
-              <Typography sx={{ mt: 2, mb: 1 }}>
-                All steps completed - you&apos;re finished
+              <Typography style={{ textAlign: "center" }} sx={{ mt: 2, mb: 1 }}>
+                Your Resume
               </Typography>
+              {/* preview */}
+              <ResumePreviewInfo
+                uploadedImage={this.props.uploadedImage}
+                modalData={this.props.modalData}
+              />
+              {preview.map((ele) => (
+                <Box sx={{ mb: 5 }}>
+                  <p style={{ margin: 0, fontWeight: 700, fontSize: "1rem" }}>
+                    {ele}
+                  </p>
+                  <ResumePreviewTable
+                    keys={this.props.keyData[ele]}
+                    header={this.props.headerData[ele]}
+                    data={this.props.modalData[ele]}
+                  />
+                </Box>
+              ))}
               <Box sx={{ display: "flex", flexDirection: "row", pt: 2 }}>
-                <Box sx={{ flex: "1 1 auto" }} />
+                <Box
+                  sx={{ flex: "1 1 auto", justifyContent: "space-between" }}
+                />
+
+                <Box>
+                  <Button
+                    color="inherit"
+                    disabled={activeStep === 0}
+                    onClick={this.handleBack}
+                    sx={{ mr: 1 }}
+                  >
+                    Back
+                  </Button>
+                </Box>
                 <Button onClick={this.handleReset}>Reset</Button>
+                <Button onClick={this.props.handleSendResume}>
+                  Create Resume
+                </Button>
               </Box>
             </React.Fragment>
           ) : (
@@ -925,7 +1132,12 @@ class CreateResume extends Component {
                     handleDelete={this.handleDeleteEdu}
                   />
                 ) : (
-                  <></>
+                  <StepFourForm
+                    data={this.props.modalData.certificate}
+                    addNewCertificate={this.props.addNewCertificate}
+                    handleChange={this.handleChangeCert}
+                    handleDelete={this.handleDeleteCert}
+                  />
                 )}
                 {/* the form should be here... */}
               </Typography>

@@ -4,6 +4,7 @@ import jwt_decode from "jwt-decode";
 export const ValidateSignature = (token) => {
   try {
     const decoded = jwt_decode(token);
+    console.log("decoded: ", decoded);
     return decoded;
   } catch (err) {
     throw err;
@@ -44,9 +45,11 @@ export const checkYearMonthValid = (
     }
   } else {
     if (startYear > endYear) {
+      console.log("run in 1");
       valid = false;
-    } else {
+    } else if (startYear === endYear) {
       if (startMonth > endMonth) {
+        console.log("run in 2");
         valid = false;
       }
     }

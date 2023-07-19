@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./App.css";
-import Header from "./header.js";
+import Header from "./components/Header/header.js";
 import Nav from "./Nav.js";
 import Home from "./home";
 import Signin from "./signin";
