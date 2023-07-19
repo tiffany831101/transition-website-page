@@ -2,7 +2,8 @@ import React from "react";
 import { HashRouter as Router, Route, Link } from "react-router-dom";
 import axios from "axios";
 import { string } from "prop-types";
-import { ValidateSignature } from "./utils";
+import { ValidateSignature } from "../../utils";
+import HeaderMenu from "./headerMenu";
 class Header extends React.Component {
   constructor(props) {
     super(props);
@@ -196,21 +197,26 @@ class Header extends React.Component {
 
     return (
       <div className="headerBox flex-nowrap">
-        <div className="mx-auto col-lg-12 col-md-12 headerBox__title">
+        {/* <div className="mx-auto col-lg-12 col-md-12 headerBox__title">
           <p className="py-1 my-0 text-center">成為您的幫手，陪伴您重新出發</p>
-        </div>
+        </div> */}
+        <HeaderMenu
+          headerCookies={this.state.cookie}
+          cleanCookie={this.cleanCookie}
+          username={this.state.username}
+        />
         <div className="px-3 mx-auto mt-3 headerBox__logo d-flex justify-content-between col-lg-12 col-md-12 align-items-center flex-wrap">
-          <div className="px-0 headerBox__logo__right d-flex justify-content-between col-lg-3 col-md-6 col-6 py-1">
+          {/* <div className="px-0 headerBox__logo__right d-flex justify-content-between col-lg-3 col-md-6 col-6 py-1">
             <div className="search">搜尋</div>
             <p className="my-0 search__icon">
               <i className="fas fa-search" />
             </p>
-          </div>
-          <div className="headerBox__logo__middle col-lg-3 col-md-8 col-12">
+          </div> */}
+          {/* <div className="headerBox__logo__middle col-lg-3 col-md-8 col-12">
             <h1 className="text-center">TRANSITION</h1>
-          </div>
+          </div> */}
           <div className="headerBox__logo__left col-lg-3 col-md-6 col-6 d-flex justify-content-around">
-            <div className="d-flex justify-content-between col-lg-8 col-md-8 col-8">
+            {/* <div className="d-flex justify-content-between col-lg-8 col-md-8 col-8">
               <div className="signin__box col-lg-4 col-md-4 col-4 text-center px-0">
                 {!this.state.cookie && (
                   <Link
@@ -252,8 +258,8 @@ class Header extends React.Component {
                   </Link>
                 )}
               </div>
-            </div>
-            <div className="col-lg-2 col-md-2 col-2 px-0 position-relative account__box">
+            </div> */}
+            {/* <div className="col-lg-2 col-md-2 col-2 px-0 position-relative account__box">
               <p className="account__profile">
                 <i class="far fa-user" />
                 <i class="fas fa-caret-down" />
@@ -276,7 +282,7 @@ class Header extends React.Component {
                   履歷表
                 </Link>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
 
