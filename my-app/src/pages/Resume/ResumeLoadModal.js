@@ -41,30 +41,38 @@ export default function GeneratingHtmlModal({
             {isLoading ? (
               <LinearWithValueLabel progress={progress} />
             ) : (
-              <Box
-                sx={{
-                  display: "flex",
-                  flexDirection: "row",
-                  justifyContent: "center",
-                  // m: "auto",
-                  // width: "fit-content",
-                }}
-              >
-                <Fab
-                  variant="extended"
-                  sx={{ mr: 3 }}
-                  size="medium"
-                  onClick={() => handleDownloadPdf(htmlUrl)}
-                >
-                  Download PDF
-                  <DownloadIcon sx={{ ml: 1 }} />
-                </Fab>
+              <>
+                <LinearWithValueLabel
+                  progress={progress}
+                  // sx={{ display: "none" }}
+                  style={{ visibility: "hidden" }}
+                />
 
-                <Fab variant="extended" size="medium" color="primary">
-                  View in browser
-                  <OpenInNewIcon sx={{ ml: 1 }} />
-                </Fab>
-              </Box>
+                <Box
+                  sx={{
+                    display: "flex",
+                    flexDirection: "row",
+                    justifyContent: "center",
+                    // m: "auto",
+                    // width: "fit-content",
+                  }}
+                >
+                  <Fab
+                    variant="extended"
+                    sx={{ mr: 3 }}
+                    size="medium"
+                    onClick={() => handleDownloadPdf(htmlUrl)}
+                  >
+                    Download PDF
+                    <DownloadIcon sx={{ ml: 1 }} />
+                  </Fab>
+
+                  <Fab variant="extended" size="medium" color="primary">
+                    View in browser
+                    <OpenInNewIcon sx={{ ml: 1 }} />
+                  </Fab>
+                </Box>
+              </>
             )}
           </Box>
         </DialogContent>
