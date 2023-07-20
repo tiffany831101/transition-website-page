@@ -17,3 +17,5 @@ export const userSignin = (params) => request.post("/signin", params);
 export const getGoogleAuthStatus = () => request.get("/auth/callback/success");
 export const postResume = (params) => request.post("/create_resume", params);
 export const generatePdf = (params) => request.post("/generate_pdf", params);
+export const getUserResumes = (params) => request.get("/resume", params);
+export const updateResume = (params) => request.post("/update_resume", params);

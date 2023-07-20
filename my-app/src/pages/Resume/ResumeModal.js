@@ -32,7 +32,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 import ResumePreviewTable from "./ResumePreviewTable";
 import ResumePreviewInfo from "./ResumePreviewInfo";
-
+import IconButton from "@mui/material/IconButton";
+import CancelIcon from "@mui/icons-material/Cancel";
 const steps = ["基本資料", "工作經歷", "學歷", "證照"];
 
 const StepOneForm = ({
@@ -873,6 +874,8 @@ class CreateResume extends Component {
   handleFileUpload(e) {
     const file = e.target.files[0];
 
+    console.log(file);
+
     this.props.setPostedImage(file);
 
     const formData = new FormData();
@@ -886,6 +889,8 @@ class CreateResume extends Component {
 
     reader.onload = () => {
       this.props.setUploadedImage(reader.result);
+
+      console.log(reader.result);
     };
 
     reader.readAsDataURL(file);
@@ -1020,6 +1025,8 @@ class CreateResume extends Component {
   };
 
   render() {
+    console.log("is edit: ", this.props.isEdit);
+
     const { activeStep } = this.state;
 
     const preview = ["education", "experience", "certificate"];
@@ -1029,7 +1036,6 @@ class CreateResume extends Component {
         fullWidth
         maxWidth={activeStep === steps.length ? "lg" : "sm"}
         open={this.props.showCreateModal}
-        onClose={this.props.handleCloseCreateModal}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
@@ -1043,7 +1049,17 @@ class CreateResume extends Component {
           noValidate
           autoComplete="off"
         >
-          <DialogTitle sx={{ textAlign: "center" }}>Create Resume</DialogTitle>
+          <DialogTitle sx={{ textAlign: "center" }}>
+            Create Resume
+            <IconButton
+              onClick={this.props.handleCloseCreateModal}
+              aria-label="edit"
+              color="primary"
+              style={{ position: "absolute", right: 0, top: 0 }}
+            >
+              <CancelIcon fontSize="large" />
+            </IconButton>
+          </DialogTitle>
           <Stepper activeStep={activeStep}>
             {steps.map((label, index) => {
               const stepProps = {};
@@ -1101,8 +1117,14 @@ class CreateResume extends Component {
                   </Button>
                 </Box>
                 <Button onClick={this.handleReset}>Reset</Button>
-                <Button onClick={this.props.handleSendResume}>
-                  Create Resume
+                <Button
+                  onClick={() =>
+                    this.props.isEdit
+                      ? this.props.handleUpdateResume()
+                      : this.props.handleSendResume()
+                  }
+                >
+                  {this.props.isEdit ? "Update" : "Create"} Resume
                 </Button>
               </Box>
             </React.Fragment>

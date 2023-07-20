@@ -1,7 +1,15 @@
 import React from "react";
+import Fab from "@mui/material/Fab";
+import CheckIcon from "@mui/icons-material/Check";
 class Home extends React.Component {
   constructor() {
     super();
+    this.handleClick = this.handleClick.bind(this);
+  }
+
+  handleClick() {
+    console.log(123);
+    window.location = "#/resume";
   }
   render() {
     return (
@@ -11,11 +19,11 @@ class Home extends React.Component {
           style={{ height: "60vh" }}
         >
           <div className="course__banner__shadow"></div>
-          <div className="home__banner__box col-lg-6 col-md-6 col-12 mt-3">
+          <div className="home__banner__box col-lg-6 col-md-6 col-12 mt-3 d-flex justify-content-center flex-wrap">
             <div className="mt-3 text-center title">
               {/* <h2>Transition 19</h2> */}
             </div>
-            <div className="slogan col-lg-12 col-md-12 col-12 flex-wrap text-center">
+            <div className="slogan col-lg-12 col-md-12 col-12 flex-wrap text-center mb-5">
               <p style={{ fontSize: "2rem", fontWeight: "bolder" }}>
                 Unlock Your Potential
               </p>
@@ -24,9 +32,17 @@ class Home extends React.Component {
               <p>相信自己的價值，展翅高飛如鳳凰。</p>
               <p>失業只是暫時境，等待更美好相遇。</p> */}
             </div>
-            <div className="mt-5 col-lg-12 col-md-12 col-md-12 text-center d-flex justify-content-center">
+            {/* <div className="mt-5 col-lg-12 col-md-12 col-md-12 text-center d-flex justify-content-center">
               <button className="home__banner__btn p-2 mb-3">Start Now!</button>
-            </div>
+            </div> */}
+            <Fab
+              variant="extended"
+              color="secondary"
+              onClick={this.handleClick}
+            >
+              Start Now
+              <CheckIcon sx={{ ml: 1 }} />
+            </Fab>
           </div>
         </div>
         <div className="home__info py-5 d-flex justify-content-center flex-wrap">

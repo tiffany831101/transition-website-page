@@ -10,12 +10,14 @@ import LinearWithValueLabel from "./LinearProgress";
 import Fab from "@mui/material/Fab";
 import DownloadIcon from "@mui/icons-material/Download";
 import OpenInNewIcon from "@mui/icons-material/OpenInNew";
+
 export default function GeneratingHtmlModal({
   open,
   handleClose,
   isLoading,
   progress,
   handleDownloadPdf,
+  htmlUrl,
 }) {
   return (
     <React.Fragment>
@@ -52,7 +54,7 @@ export default function GeneratingHtmlModal({
                   variant="extended"
                   sx={{ mr: 3 }}
                   size="medium"
-                  onClick={handleDownloadPdf}
+                  onClick={() => handleDownloadPdf(htmlUrl)}
                 >
                   Download PDF
                   <DownloadIcon sx={{ ml: 1 }} />
