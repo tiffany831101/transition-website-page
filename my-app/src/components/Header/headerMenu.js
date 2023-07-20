@@ -19,13 +19,15 @@ import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
 import Fab from "@mui/material/Fab";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
+import { deepOrange, deepPurple } from "@mui/material/colors";
 
-const pages = ["Products", "Pricing", "Blog"];
+const pages = ["Premium", "Pricing", "Blog"];
 const settings = ["Profile", "Account", "Dashboard", "Logout"];
 
 function HeaderMenu({ headerCookies, username, cleanCookie }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
+  console.log("username: ", username);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -143,10 +145,9 @@ function HeaderMenu({ headerCookies, username, cleanCookie }) {
               <>
                 <Tooltip title="Open settings">
                   <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                    <Avatar
-                      alt="Remy Sharp"
-                      src="/static/images/avatar/2.jpg"
-                    />
+                    <Avatar sx={{ bgcolor: deepPurple[500] }}>
+                      {username[0]}
+                    </Avatar>
                   </IconButton>
                 </Tooltip>
                 <Menu
