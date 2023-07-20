@@ -96,7 +96,7 @@ const Resume = () => {
     ],
   };
 
-  useEffect(() => {
+  const getResumes = () => {
     const token = localStorage.getItem("token");
     if (token) {
       const payload = ValidateSignature(token);
@@ -112,6 +112,26 @@ const Resume = () => {
           console.log(err);
         });
     }
+  };
+
+  useEffect(() => {
+    // const token = localStorage.getItem("token");
+    // if (token) {
+    //   const payload = ValidateSignature(token);
+    //   console.log("payload: ", payload);
+    //   getUserResumes({ uid: payload._id })
+    //     .then((res) => {
+    //       console.log("resdfsdf: ", res);
+    //       const { resumes } = res.data;
+    //       console.log(resumes);
+    //       setTableData(resumes);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // }
+
+    getResumes();
   }, []);
   const keyData = {
     certificate: ["cert_name", "cert_org", "cert_month", "cert_year"],
@@ -207,6 +227,12 @@ const Resume = () => {
     setShowGeneratingModal(false);
   };
 
+  useEffect(() => {
+    if (!showGeneratingModal) {
+      console.log("generating modal is closed");
+      getResumes();
+    }
+  }, [showGeneratingModal]);
   useEffect(() => {
     setActiveStep(0);
     if (!showCreateModal) {
