@@ -20,6 +20,7 @@
     "react-jwt": "^1.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^5.0.1",
+    "socket.io-client": "^4.7.2",
     "validator": "^13.9.0",
     "zxcvbn": "^4.4.2"
   },

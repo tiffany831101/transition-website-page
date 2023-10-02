@@ -33,7 +33,7 @@ class App extends Component {
         <Router>
           <div className="container-fluid">
             <Header cookies={this.props.cookies} />
-            <Nav />
+            {/* <Nav /> */}
             <div className="container-fluid">
               <Route
                 exact

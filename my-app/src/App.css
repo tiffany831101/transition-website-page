@@ -460,6 +460,7 @@ button {
 
 .blog__box {
 	background-color: #efecec;
+  height: 80vh;
 }
 
 .blog__box .post__box {

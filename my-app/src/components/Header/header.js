@@ -50,24 +50,6 @@ class Header extends React.Component {
         cookie: true,
         username: cookies.cookies.user,
       });
-
-      axios
-        .post("http://localhost:3001/addfriend", {
-          nickname: cookies.cookies.user,
-        })
-        .then((response) => {
-          console.log(response.data);
-          // 這邊有render出來爬回來的api
-          if (response.data[0] !== undefined) {
-            this.setState({
-              friend: response.data[0].nickname,
-              close: false,
-            });
-          }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     }
   }
   // 第一次component炫染的時候，因為它可能不是馬上進網站就登入註冊，所以header可能已經被渲染很多次
@@ -99,56 +81,7 @@ class Header extends React.Component {
 
     if (this.state.cookie) {
       // console.log(this.state.friend, prevState.friend);
-
       // if (this.state.friend !== null) return;
-      axios
-        .post("http://localhost:3001/addfriend", {
-          nickname: cookies.cookies.user,
-        })
-        .then((response) => {
-          console.log(response.data);
-          this.setState((prevState) => {
-            if (prevState.friend) {
-              console.log("已經設定過friend成nickname不要設定了！");
-              return; //代表已經是true了，就不要再設定state了，結束這個無窮迴圈
-            } else {
-              console.log("設定朋友ing");
-              if (response.data.length !== 0) {
-                return {
-                  friend: response.data[0].nickname,
-                  close: false,
-                };
-              } //如果是undefined代表還沒設定，所以不用再繼續跑
-            }
-          });
-          // 這邊有render出來爬回來的api
-          // console.log(response);
-          // if (response.data.length !== 0) {
-          // 	this.setState(prevState => {
-          // 		return ({
-          // 			friend: response.data[0].nickname,
-          // 			close: false,
-          // 		})
-
-          // 		// if (prevState == this.state) {
-          // 		// 	console.log("state沒有改變")
-          // 		// 	return
-          // 		// } else {
-          // 		// 	return ({
-          // 		//
-          // 		// 	})
-          // 	}
-          // 	)
-          // } else {
-          // 	return ({
-          // 		friend: null,
-          // 		close: true,
-          // 	})
-          // }
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     }
   }
 

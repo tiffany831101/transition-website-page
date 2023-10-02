@@ -29,7 +29,7 @@ class Nav extends React.Component {
                 name="unemploy"
                 to="/unemploy"
               >
-                失業專區
+                名片專區
               </Link>
               <div className="umemploy__box col-lg-2 col-md-2 col-6">
                 <Link
@@ -58,6 +58,11 @@ class Nav extends React.Component {
             {/* <li className={"nav-item " + (pathname === '/jobs' && 'active')}>
                             <Link className="nav-link" name="jobs" to="/jobs">查詢職缺</Link>
                         </li> */}
+            <li className={"nav-item " + (pathname === "/courses" && "active")}>
+              <Link className="nav-link" name="courses" to="/courses">
+                培訓課程
+              </Link>
+            </li>
           </ul>
         </div>
       </nav>

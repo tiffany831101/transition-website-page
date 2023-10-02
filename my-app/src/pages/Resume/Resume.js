@@ -295,8 +295,10 @@ const Resume = () => {
     setIsLoading(true);
     const timer = setInterval(() => {
       if (progress < 99) {
-        setProgress(
-          (prevProgress) => prevProgress + Math.floor(Math.random() * 50)
+        setProgress((prevProgress) =>
+          prevProgress + Math.floor(Math.random() * 50) < 90
+            ? prevProgress + Math.floor(Math.random() * 50)
+            : 95
         );
       }
     }, 1000);
@@ -350,13 +352,7 @@ const Resume = () => {
     setShowCreateModal(false);
     setShowGeneratingModal(true);
     setIsLoading(true);
-    const timer = setInterval(() => {
-      if (progress < 99) {
-        setProgress(
-          (prevProgress) => prevProgress + Math.floor(Math.random() * 50)
-        );
-      }
-    }, 1000);
+    setProgress(30);
 
     console.log("sending resume...");
 
@@ -382,6 +378,8 @@ const Resume = () => {
 
     postResume(formData)
       .then((res) => {
+        setProgress(60);
+
         setIsLoading(false);
 
         console.log("Resume successfully sent");
@@ -391,11 +389,8 @@ const Resume = () => {
         setHtmlUrl(htmlUrl);
 
         setProgress(100); // Set progress to 100 after receiving the API response
-        clearInterval(timer); // Clear the timer
       })
       .catch((err) => {
-        clearInterval(timer); // Clear the timer
-
         console.error("Error sending resume:", err);
       });
 
