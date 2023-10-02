@@ -19,3 +19,7 @@ export const postResume = (params) => request.post("/create_resume", params);
 export const generatePdf = (params) => request.post("/generate_pdf", params);
 export const getUserResumes = (params) => request.get("/resume", params);
 export const updateResume = (params) => request.post("/update_resume", params);
+
+// namecard service
+export const postNameCard = (params) => request.post("/namecard", params);
+export const getCurrentJobByResume = (uid) => request.get(`/resumes/${uid}`);

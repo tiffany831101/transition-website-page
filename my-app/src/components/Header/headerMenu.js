@@ -20,9 +20,15 @@ import LoginIcon from "@mui/icons-material/Login";
 import Fab from "@mui/material/Fab";
 import PersonAddIcon from "@mui/icons-material/PersonAdd";
 import { deepOrange, deepPurple } from "@mui/material/colors";
+import Drawer from "@mui/material/Drawer";
+import { useEffect } from "react";
 
-const pages = ["Premium", "Pricing", "Blog"];
-const settings = ["Profile", "Account", "Dashboard", "Logout"];
+const pages = [
+  { path: "#/resume", name: "Resume" },
+  { path: "#/blog", name: "Card" },
+  { path: "#/price", name: "Premium" },
+];
+const settings = ["Profile", "Busincess Card", "Resume", "Dashboard", "Logout"];
 
 function HeaderMenu({ headerCookies, username, cleanCookie }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
@@ -31,6 +37,10 @@ function HeaderMenu({ headerCookies, username, cleanCookie }) {
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
+  };
+
+  const handleChangeLocation = (path) => {
+    window.location = path;
   };
   const handleOpenUserMenu = (event) => {
     setAnchorElUser(event.currentTarget);
@@ -42,6 +52,15 @@ function HeaderMenu({ headerCookies, username, cleanCookie }) {
 
   const handleCloseUserMenu = () => {
     setAnchorElUser(null);
+  };
+
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
+  const handleClick = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+  const handleClose = () => {
+    setAnchorEl(null);
   };
 
   return (
@@ -102,9 +121,9 @@ function HeaderMenu({ headerCookies, username, cleanCookie }) {
                 display: { xs: "block", md: "none" },
               }}
             >
-              {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
-                  <Typography textAlign="center">{page}</Typography>
+              {pages.map((page, idx) => (
+                <MenuItem key={idx} onClick={handleCloseNavMenu}>
+                  <Typography textAlign="center">{page.name}</Typography>
                 </MenuItem>
               ))}
             </Menu>
@@ -129,13 +148,13 @@ function HeaderMenu({ headerCookies, username, cleanCookie }) {
             LOGO
           </Typography>
           <Box sx={{ flexGrow: 1, display: { xs: "none", md: "flex" } }}>
-            {pages.map((page) => (
+            {pages.map((page, idx) => (
               <Button
-                key={page}
-                onClick={handleCloseNavMenu}
+                key={idx}
+                onClick={() => handleChangeLocation(page.path)}
                 sx={{ my: 2, color: "#474747", display: "block" }}
               >
-                {page}
+                {page.name}
               </Button>
             ))}
           </Box>

@@ -1,138 +1,470 @@
 import { HashRouter as Router, Route, Link } from "react-router-dom";
-import Sidebar from "./blogSidebar";
-import Advertise from "./blogAdvertise";
-
 import * as React from "react";
+import { useState, useEffect } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Button from "@mui/material/Button";
-import Typography from "@mui/material/Typography";
-import Box from "@mui/material/Box";
 import Divider from "@mui/material/Divider";
 import IconButton from "@mui/material/IconButton";
-import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
-import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import { styled } from "@mui/material/styles";
-import CardHeader from "@mui/material/CardHeader";
-import Collapse from "@mui/material/Collapse";
 import Avatar from "@mui/material/Avatar";
-import { red } from "@mui/material/colors";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import ShareIcon from "@mui/icons-material/Share";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import MoreVertIcon from "@mui/icons-material/MoreVert";
 import MessageIcon from "@mui/icons-material/Message";
+import AddCardIcon from "@mui/icons-material/AddCard";
+import Box from "@mui/material/Box";
+import Backdrop from "@mui/material/Backdrop";
+import TextField from "@mui/material/TextField";
+import Dialog from "@mui/material/Dialog";
+import DialogActions from "@mui/material/DialogActions";
+import DialogContent from "@mui/material/DialogContent";
+import DialogContentText from "@mui/material/DialogContentText";
+import DialogTitle from "@mui/material/DialogTitle";
+import Button from "@mui/material/Button";
+import AccountCircleIcon from "@mui/icons-material/AccountCircle";
 
-const MediaCard = () => {
-  const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-  })(({ theme, expand }) => ({
-    transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-    marginLeft: "auto",
-    transition: theme.transitions.create("transform", {
-      duration: theme.transitions.duration.shortest,
-    }),
-  }));
+import Paper from "@mui/material/Paper";
+import InputBase from "@mui/material/InputBase";
+import SearchIcon from "@mui/icons-material/Search";
 
+import SpeedDial from "@mui/material/SpeedDial";
+import SpeedDialIcon from "@mui/material/SpeedDialIcon";
+import SpeedDialAction from "@mui/material/SpeedDialAction";
+import FileCopyIcon from "@mui/icons-material/FileCopyOutlined";
+import SaveIcon from "@mui/icons-material/Save";
+import PrintIcon from "@mui/icons-material/Print";
+import Switch from "@mui/material/Switch";
+import { postNameCard, getCurrentJobByResume } from "../../api";
+import { ValidateSignature } from "../../utils";
+
+const label = { inputProps: { "aria-label": "Switch demo" } };
+
+// const ExpandMore = styled((props) => {
+//   const { expand, ...other } = props;
+//   return <IconButton {...other} />;
+// })(({ theme, expand }) => ({
+//   transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
+//   marginLeft: "auto",
+//   transition: theme.transitions.create("transform", {
+//     duration: theme.transitions.duration.shortest,
+//   }),
+// }));
+
+function CustomizedInputBase() {
+  return (
+    <Paper
+      component="form"
+      sx={{ p: "2px 4px", display: "flex", alignItems: "center", width: 600 }}
+    >
+      {/* <IconButton sx={{ p: "10px" }} aria-label="menu">
+        <MenuIcon />
+      </IconButton> */}
+      <InputBase
+        sx={{ ml: 1, flex: 1 }}
+        placeholder="Search Business Cards"
+        inputProps={{ "aria-label": "search google maps" }}
+      />
+      <IconButton type="button" sx={{ p: "10px" }} aria-label="search">
+        <SearchIcon />
+      </IconButton>
+      {/* <Divider sx={{ height: 28, m: 0.5 }} orientation="vertical" /> */}
+      {/* <IconButton color="primary" sx={{ p: "10px" }} aria-label="directions">
+        <DirectionsIcon />
+      </IconButton> */}
+    </Paper>
+  );
+}
+function RecipeReviewCard() {
   const [expanded, setExpanded] = React.useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
   return (
-    <Card sx={{ mb: 3, minHeight: "40vh" }}>
-      {/* <CardMedia
-        sx={{ height: 140 }}
-        image="/static/images/cards/contemplative-reptile.jpg"
-        title="green iguana"
+    <Card sx={{ width: 350 }}>
+      {/* <CardHeader
+        avatar={
+          <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+            R
+          </Avatar>
+        }
+        action={
+          <Fab
+            variant="extended"
+            aria-label="add"
+            size="small"
+            color="primary"
+            className="mt-2"
+          >
+            Contact
+          </Fab>
+        }
+        title="Shrimp and Chorizo Paella"
+        // subheader="September 14, 2016"
       /> */}
-      <Box sx={{ display: "flex" }}>
-        <CardContent
-          sx={{ minHeight: "30vh" }}
-          className="col-2 flex-wrap d-flex"
-        >
-          <Box
-            sx={{
-              display: "flex",
-              flexDirection: "column",
-              alignContent: "center",
+      {/* <CardMedia
+        component="img"
+        height="194"
+        image="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg"
+        alt="Paella dish"
+      /> */}
+
+      <CardContent style={{ position: "relative" }}>
+        <div
+          style={{
+            top: 0,
+            left: 0,
+            position: "absolute",
+            width: "100%",
+            height: "40%",
+            background: "#474747",
+          }}
+        ></div>
+        <div className="d-flex justify-content-around align-items-center flex-wrap">
+          <Avatar
+            sx={{ width: 100, height: 100 }}
+            alt="Remy Sharp"
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4d/Cat_November_2010-1a.jpg/1200px-Cat_November_2010-1a.jpg"
+          />
+
+          <p
+            style={{
+              fontSize: 20,
+              textAlign: "center",
+              marginLeft: 5,
+              fontWeight: "bolder",
             }}
           >
-            <IconButton aria-label="delete">
-              <KeyboardArrowUpIcon fontSize="large" />
-            </IconButton>
-            <p style={{ textAlign: "center", margin: 0 }}>55</p>
-            <IconButton aria-label="delete">
-              <KeyboardArrowDownIcon fontSize="large" />
-            </IconButton>
-          </Box>
-        </CardContent>
-        {/* https://dribbble.com/shots/10865779-Forume-Home-Page-Design/attachments/2521647?mode=media */}
-        <CardContent sx={{ pr: 10, minHeight: "30vh" }}>
-          <Typography gutterBottom variant="h5" component="div">
-            Lizard
-          </Typography>
+            Product Manager @ Adobe
+          </p>
 
-          <Typography variant="body2" color="text.secondary">
-            Lizards are a widespread group of squamate reptiles, with over 6,000
-            species, ranging across all continents except Antarctica
-          </Typography>
-        </CardContent>
-      </Box>
-      <Box>
-        <Divider />
-      </Box>
-      <CardActions>
-        {/* <Button size="small">Share</Button>
-        <Button size="small">Learn More</Button> */}
-        <ExpandMore
+          <div className="col-12">
+            <p className="mb-0" style={{ textAlign: "center" }}>
+              Ann Wang
+            </p>
+          </div>
+        </div>
+      </CardContent>
+      <Divider />
+      <CardActions disableSpacing className="d-flex justify-content-between">
+        <div>
+          <IconButton aria-label="add to favorites">
+            <FavoriteIcon />
+          </IconButton>
+
+          {/* <ExpandMore
           expand={expanded}
           onClick={handleExpandClick}
           aria-expanded={expanded}
           aria-label="show more"
         >
-          <MessageIcon />
-        </ExpandMore>
+          <ExpandMoreIcon /> */}
+          {/* </ExpandMore> */}
+          <IconButton aria-label="share">
+            <AddCardIcon />
+          </IconButton>
+        </div>
+        <div>
+          <IconButton aria-label="share">
+            <MessageIcon />
+          </IconButton>
+        </div>
       </CardActions>
-
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          <Typography paragraph>Method:</Typography>
-          <Typography paragraph>
-            Heat 1/2 cup of the broth in a pot until simmering, add saffron and
-            set aside for 10 minutes.
-          </Typography>
-          <Typography paragraph>
-            Heat oil in a (14- to 16-inch) paella pan or a large, deep skillet
-            over medium-high heat. Add chicken, shrimp and chorizo, and cook,
-            stirring occasionally until lightly browned, 6 to 8 minutes.
-            Transfer shrimp to a large plate and set aside, leaving chicken and
-            chorizo in the pan. Add pimentón, bay leaves, garlic, tomatoes,
-            onion, salt and pepper, and cook, stirring often until thickened and
-            fragrant, about 10 minutes. Add saffron broth and remaining 4 1/2
-            cups chicken broth; bring to a boil.
-          </Typography>
-          <Typography paragraph>
-            Add rice and stir very gently to distribute. Top with artichokes and
-            peppers, and cook without stirring, until most of the liquid is
-            absorbed, 15 to 18 minutes. Reduce heat to medium-low, add reserved
-            shrimp and mussels, tucking them down into the rice, and cook again
-            without stirring, until mussels have opened and rice is just tender,
-            5 to 7 minutes more. (Discard any mussels that don&apos;t open.)
-          </Typography>
-          <Typography>
-            Set aside off of the heat to let rest for 10 minutes, and then
-            serve.
-          </Typography>
-        </CardContent>
-      </Collapse>
     </Card>
+  );
+}
+
+const CreateNameCard = ({
+  setOpen,
+  open,
+  checked,
+  handleChange,
+  setPostedImage,
+  setUploadedImage,
+  uploadedImage,
+  setUploadedObverseImage,
+  setPostedObverseImage,
+  uploadedObverseImage,
+  nameCardName,
+  jobTitle,
+  handleChangeInfo,
+  handleConfirm,
+  uploadedSelfImage,
+  setUploadedSelfImage,
+  setPostedSelfImage,
+  company,
+}) => {
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
+  const handleFileUpload = (e) => {
+    const file = e.target.files[0];
+
+    console.log(file);
+
+    setPostedImage(file);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setUploadedImage(reader.result);
+
+      console.log(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileUploadObverse = (e) => {
+    const file = e.target.files[0];
+
+    console.log(file);
+
+    setPostedObverseImage(file);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setUploadedObverseImage(reader.result);
+
+      console.log(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  const handleFileUploadSelf = (e) => {
+    const file = e.target.files[0];
+
+    console.log(file);
+
+    setPostedSelfImage(file);
+
+    const formData = new FormData();
+    formData.append("image", file);
+
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      setUploadedSelfImage(reader.result);
+
+      console.log(reader.result);
+    };
+
+    reader.readAsDataURL(file);
+  };
+
+  return (
+    <Dialog open={open} onClose={handleClose} fullWidth maxWidth="md">
+      <DialogTitle>Create Your Personal Namecard</DialogTitle>
+      <DialogContent>
+        <DialogContentText>
+          <Switch
+            checked={checked}
+            onChange={handleChange}
+            inputProps={{ "aria-label": "controlled" }}
+          />
+          Create your namecard with your latest job by resume
+        </DialogContentText>
+        {!checked && (
+          <div className="d-flex justify-content-center flex-wrap">
+            <div className="mb-2 d-flex justify-content-center flex-wrap">
+              {uploadedSelfImage === null ? (
+                <AccountCircleIcon
+                  style={{ color: "#d9d9d9", width: "100%", height: "100px" }}
+                />
+              ) : (
+                <div
+                  style={{
+                    width: "100px",
+                    height: "100px",
+                    border: "1px",
+                    borderRadius: "50%",
+                    backgroundImage: `url(${uploadedSelfImage})`,
+                    backgroundSize: "cover",
+                  }}
+                />
+              )}
+              <div className="col-12 d-flex justify-content-center">
+                <Button size="small" variant="contained" component="label">
+                  Upload Avatar
+                  <input type="file" hidden onChange={handleFileUploadSelf} />
+                </Button>
+              </div>
+            </div>
+
+            <TextField
+              autoFocus
+              margin="dense"
+              id="jobTitle"
+              label="Job Title"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={jobTitle}
+              onChange={(e) => handleChangeInfo("jobTitle", e.target.value)}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="name"
+              label="Name"
+              type="text"
+              fullWidth
+              value={nameCardName}
+              variant="standard"
+              onChange={(e) => handleChangeInfo("name", e.target.value)}
+            />
+            <TextField
+              autoFocus
+              margin="dense"
+              id="company"
+              label="Company"
+              type="text"
+              fullWidth
+              variant="standard"
+              value={company}
+              onChange={(e) => handleChangeInfo("company", e.target.value)}
+            />
+          </div>
+        )}
+
+        <p>Name Card Proof</p>
+        <Box
+          style={{
+            background: "#dee4ea",
+            height: "300px",
+            display: "flex",
+            justifyContent: "space-between",
+          }}
+        >
+          <div className="col-6 d-flex justify-content-center flex-wrap">
+            <Button size="small" variant="contained" component="label">
+              Front Side
+              <input type="file" hidden onChange={handleFileUpload} />
+            </Button>
+
+            <div
+              className="mt-1"
+              style={{
+                width: "100%",
+                height: "80%",
+                border: "dotted",
+                backgroundImage: `url(${uploadedImage})`,
+                backgroundSize: "cover",
+              }}
+            />
+          </div>
+          <div className="col-6 d-flex justify-content-center flex-wrap">
+            <Button size="small" variant="contained" component="label">
+              Back Side
+              <input type="file" hidden onChange={handleFileUploadObverse} />
+            </Button>
+
+            <div
+              className="mt-1"
+              style={{
+                width: "100%",
+                height: "80%",
+                border: "dotted",
+                backgroundImage: `url(${uploadedObverseImage})`,
+                backgroundSize: "cover",
+              }}
+            />
+          </div>
+        </Box>
+      </DialogContent>
+      <DialogActions>
+        <Button onClick={handleClose}>Cancel</Button>
+        <Button onClick={handleConfirm}>Confirm</Button>
+      </DialogActions>
+    </Dialog>
   );
 };
 const Blog = (props) => {
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [checked, setCheck] = useState(true);
+
+  const [postedImage, setPostedImage] = useState("");
+  const [uploadedImage, setUploadedImage] = useState(null);
+  const [uploadedObverseImage, setUploadedObverseImage] = useState(null);
+  const [postedObverseImage, setPostedObverseImage] = useState("");
+  const [postedSelfImage, setPostedSelfImage] = useState(null);
+  const [uploadedSelfImage, setUploadedSelfImage] = useState(null);
+  const [company, setCompany] = useState("");
+
+  const [nameCardName, setNameCardName] = useState("");
+  const [jobTitle, setJobTitle] = useState("");
+
+  const [currentJob, setCurrentJob] = useState({});
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (!token) return;
+    let payload = ValidateSignature(token);
+    const uid = payload._id;
+    getCurrentJobByResume("110960030434017573896")
+      .then((res) => {
+        console.log("res: ", res);
+        setCurrentJob(res.data);
+      })
+      .catch((err) => {
+        console.log("err: ", err);
+      });
+  }, []);
+  // resume jobtitle
+  // resume company name
+  const postUserNameCard = () => {
+    // 沒有要使用 resume 但也沒有填寫 job title 跟 name
+    const token = localStorage.getItem("token");
+
+    if (!checked && !nameCardName && !jobTitle) return;
+    if (!token) return;
+
+    let payload = ValidateSignature(token);
+    const id = payload._id;
+    postNameCard({
+      uid: id,
+      jobTitle,
+      company,
+      nameCardName,
+      image: {
+        front: uploadedImage,
+        back: uploadedObverseImage,
+        avatar: uploadedSelfImage,
+      },
+    })
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
+  const handleChangeInfo = (type, val) => {
+    if (type === "jobTitle") {
+      setJobTitle(val);
+    }
+
+    if (type === "name") {
+      setNameCardName(val);
+    }
+
+    if (type === "company") {
+      setCompany(val);
+    }
+  };
+
   const blogContent = [
     {
       title: "小事公益七天挑戰賽 Day 1",
@@ -154,10 +486,70 @@ const Blog = (props) => {
     },
   ];
 
+  const actions = [
+    { icon: <FileCopyIcon />, name: "Create" },
+    { icon: <SaveIcon />, name: "Save" },
+    { icon: <PrintIcon />, name: "Print" },
+    { icon: <ShareIcon />, name: "Share" },
+  ];
+
+  const handleClick = (actionName) => {
+    if (actionName === "Create") {
+      console.log("modal: ", showCreateModal);
+      setShowCreateModal(true);
+    }
+  };
+
+  const handleConfirm = () => {
+    // console.log(123);
+    setShowCreateModal(false);
+    postUserNameCard();
+  };
+
   return (
-    <div className="red col-lg-12 col-md-12 col-12 d-flex justify-content-center flex-wrap py-3 blog__box">
-      {/* <Sidebar info={props} /> */}
-      <div className="mt-3 col-lg-6 col-md-6 col-12">
+    <div className="blog__box pt-5">
+      <div className="d-flex justify-content-center col-12">
+        <CustomizedInputBase />
+      </div>
+      <CreateNameCard
+        setOpen={setShowCreateModal}
+        open={showCreateModal}
+        checked={checked}
+        handleChange={() => setCheck(!checked)}
+        setPostedImage={setPostedImage}
+        setUploadedImage={setUploadedImage}
+        uploadedImage={uploadedImage}
+        uploadedObverseImage={uploadedObverseImage}
+        setUploadedObverseImage={setUploadedObverseImage}
+        setPostedObverseImage={setPostedObverseImage}
+        nameCardName={nameCardName}
+        jobTitle={jobTitle}
+        handleChangeInfo={handleChangeInfo}
+        handleConfirm={handleConfirm}
+        uploadedSelfImage={uploadedSelfImage}
+        setUploadedSelfImage={setUploadedSelfImage}
+        postedSelfImage={postedSelfImage}
+        setPostedSelfImage={setPostedSelfImage}
+        company={company}
+      />
+      <SpeedDial
+        ariaLabel="SpeedDial basic example"
+        sx={{ position: "absolute", bottom: 16, right: 16 }}
+        icon={<SpeedDialIcon />}
+      >
+        {actions.map((action) => (
+          <SpeedDialAction
+            key={action.name}
+            icon={action.icon}
+            tooltipTitle={action.name}
+            onClick={() => handleClick(action.name)}
+          />
+        ))}
+      </SpeedDial>
+      {/* make your own namecard */}
+      <div className="col-lg-12 col-md-12 col-12 d-flex flex-wrap py-3">
+        {/* <Sidebar info={props} /> */}
+        {/* <div className="my-3 col-lg-6 col-md-6 col-12 d-flex justify-content-center flex-wrap"> */}
         {/* <div className="blog__banner">
           <img src="" alt="" />
         </div> */}
@@ -172,14 +564,24 @@ const Blog = (props) => {
           //     <p className="ml-3">回應</p>
           //   </div>
           // </div>
-          <MediaCard />
+          <div className="col-4">
+            <RecipeReviewCard />
+          </div>
         ))}
+        {/* </div> */}
+        {/* 這邊測試可否到達單頁頁面ok的，之後單頁頁面要設成/blog/whole/posts/2這樣的路徑 */}
+        {/* <Link to="/blog/whole/posts/2">點我</Link> */}
+        {/* <Advertise /> */}
       </div>
-      {/* 這邊測試可否到達單頁頁面ok的，之後單頁頁面要設成/blog/whole/posts/2這樣的路徑 */}
-      {/* <Link to="/blog/whole/posts/2">點我</Link> */}
-      {/* <Advertise /> */}
     </div>
   );
 };
+
+const actions = [
+  { icon: <FileCopyIcon />, name: "Copy" },
+  { icon: <SaveIcon />, name: "Save" },
+  { icon: <PrintIcon />, name: "Print" },
+  { icon: <ShareIcon />, name: "Share" },
+];
 
 export default Blog;
