@@ -4,7 +4,6 @@
   <img width="927" alt="homepage" src="https://github.com/tiffany831101/transition-website-page/assets/39373272/07cc27ce-9bd7-4ac8-b192-3f07c4844bbe">
 
 ## Table of Contents
-
 - [Transition](#transition)
   - [Getting Started](#getting-started)
   - [Features](#features)
