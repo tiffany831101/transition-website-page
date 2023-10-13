@@ -52,7 +52,6 @@ The **Transition** website is built using the following architecture:
 The entire application is orchestrated to run on Amazon ECS (Elastic Container Service), ensuring scalability and resource-efficient deployment.
 
 ## Usage
-
 ### Installation
 
 To run the Transition App on your local machine, follow these steps:
