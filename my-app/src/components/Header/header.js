@@ -66,10 +66,8 @@ class Header extends React.Component {
     } else {
       this.setState((prevState) => {
         if (prevState.cookie) {
-          console.log("已經設定過cookie成登入狀態不要設定了！");
           return; //代表已經是true了，就不要再設定state了，結束這個無窮迴圈
         } else {
-          console.log("設定cookie...");
           return {
             cookie: true,
             username: cookies.cookies.user,
