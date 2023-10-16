@@ -103,7 +103,7 @@ const Resume = () => {
       console.log("payload: ", payload);
       getUserResumes({ uid: payload._id })
         .then((res) => {
-          console.log("resdfsdf: ", res);
+          // console.log("resdfsdf: ", res);
           const { resumes } = res.data;
           console.log(resumes);
           setTableData(resumes);
