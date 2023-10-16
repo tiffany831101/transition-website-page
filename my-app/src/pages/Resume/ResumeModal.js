@@ -852,9 +852,9 @@ class CreateResume extends Component {
   }
 
   handleChange(e) {
-    console.log("name: ", e.target.name);
+    // console.log("name: ", e.target.name);
     const valueType = e.target.name;
-    console.log("val: ", e.target.value);
+    // console.log("val: ", e.target.value);
     this.props.setModalData({
       ...this.props.modalData,
       [valueType]: e.target.value,
@@ -872,11 +872,21 @@ class CreateResume extends Component {
   }
 
   handleFileUpload(e) {
-    const file = e.target.files[0];
+    let file = e.target.files[0];
 
-    console.log(file);
+    if (file) {
+      const fileSize = file.size; // Size in bytes
+      const maxSize = 1000 * 1024; // 1000 KB (approximately 1 MB)
 
-    this.props.setPostedImage(file);
+      if (fileSize > maxSize) {
+        alert(
+          "File size exceeds the limit (1000 KB). Please upload a smaller file."
+        );
+        return;
+      } else {
+        this.props.setPostedImage(file);
+      }
+    }
 
     const formData = new FormData();
     formData.append("image", file);
@@ -890,7 +900,7 @@ class CreateResume extends Component {
     reader.onload = () => {
       this.props.setUploadedImage(reader.result);
 
-      console.log(reader.result);
+      // console.log(reader.result);
     };
 
     reader.readAsDataURL(file);
@@ -901,7 +911,7 @@ class CreateResume extends Component {
 
     let value;
     if (type === "is_present") {
-      console.log("is_present", e.target.checked);
+      // console.log("is_present", e.target.checked);
       value = e.target.checked;
     } else {
       value = e.target.value;
@@ -927,7 +937,7 @@ class CreateResume extends Component {
 
     let value;
     if (type === "is_present") {
-      console.log("is_present", e.target.checked);
+      // console.log("is_present", e.target.checked);
       value = e.target.checked;
     } else {
       value = e.target.value;
@@ -1025,8 +1035,6 @@ class CreateResume extends Component {
   };
 
   render() {
-    console.log("is edit: ", this.props.isEdit);
-
     const { activeStep } = this.state;
 
     const preview = ["education", "experience", "certificate"];

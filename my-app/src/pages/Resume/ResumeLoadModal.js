@@ -67,7 +67,14 @@ export default function GeneratingHtmlModal({
                     <DownloadIcon sx={{ ml: 1 }} />
                   </Fab>
 
-                  <Fab variant="extended" size="medium" color="primary">
+                  <Fab
+                    variant="extended"
+                    size="medium"
+                    color="primary"
+                    onClick={() => {
+                      window.open(htmlUrl, "_blank");
+                    }}
+                  >
                     View in browser
                     <OpenInNewIcon sx={{ ml: 1 }} />
                   </Fab>

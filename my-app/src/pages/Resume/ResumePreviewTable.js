@@ -21,9 +21,9 @@ function createData(name, ResumeLink, CreatedAt) {
 // const rows = [createData("My Resume", "http://example.com", "2023-07-13")];
 
 const ResumePreviewTable = ({ data, header, keys }) => {
-  console.log("data", data);
-  console.log("header: ", header);
-  console.log("keys: ", keys);
+  // console.log("data", data);
+  // console.log("header: ", header);
+  // console.log("keys: ", keys);
   return (
     <Box
       component="form"
