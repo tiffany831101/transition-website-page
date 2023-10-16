@@ -8,7 +8,6 @@ class Header extends React.Component {
   constructor(props) {
     super(props);
     const { cookies } = props;
-    console.log(cookies.cookies.user);
     this.state = {
       cookie: false,
       friend: null,
@@ -22,8 +21,8 @@ class Header extends React.Component {
   // 第一次component炫染的時候
   componentDidMount(prevProps, prevState) {
     const { cookies } = this.props;
-    console.log(this.state);
-    console.log("cookies in header: ", cookies);
+    // console.log(this.state);
+    // console.log("cookies in header: ", cookies);
 
     if (cookies.cookies.token) {
       localStorage.setItem("token", cookies.cookies.token);
@@ -59,11 +58,11 @@ class Header extends React.Component {
     // 	console.log("state沒有變走return")
     // }
     const { cookies } = this.props;
-    console.log(this.state);
+    // console.log(this.state);
     // console.log(cookies.cookies.user == undefined);
     // console.log(cookies.cookies.user !== undefined);//代表還沒有設cookie
     if (cookies.cookies.user === undefined) {
-      console.log("還沒註冊設定cookie"); //這邊要顯示註冊登入
+      // console.log("還沒註冊設定cookie"); //這邊要顯示註冊登入
     } else {
       this.setState((prevState) => {
         if (prevState.cookie) {
@@ -126,7 +125,7 @@ class Header extends React.Component {
   }
 
   render() {
-    console.log(this.state);
+    // console.log(this.state);
 
     return (
       <div className="headerBox flex-nowrap">
@@ -220,30 +219,30 @@ class Header extends React.Component {
         </div>
 
         <div
-          class={"modal " + (this.state.close ? "d-none" : "d-block")}
-          tabindex="-1"
+          className={"modal " + (this.state.close ? "d-none" : "d-block")}
+          // tabindex="-1"
           role="dialog"
         >
-          <div class="modal-dialog" role="document">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title">Modal title</h5>
+          <div className="modal-dialog" role="document">
+            <div className="modal-content">
+              <div className="modal-header">
+                <h5 className="modal-title">Modal title</h5>
                 <button
                   type="button"
-                  class="close"
+                  className="close"
                   data-dismiss="modal"
                   aria-label="Close"
                 >
                   <span aria-hidden="true">&times;</span>
                 </button>
               </div>
-              <div class="modal-body">
+              <div className="modal-body">
                 <p>你願意和{this.state.friend}成為朋友嗎？</p>
               </div>
-              <div class="modal-footer">
+              <div className="modal-footer">
                 <button
                   type="button"
-                  class="btn btn-secondary"
+                  className="btn btn-secondary"
                   value="yes"
                   onClick={this.addFriend}
                 >
@@ -251,7 +250,7 @@ class Header extends React.Component {
                 </button>
                 <button
                   type="button"
-                  class="btn btn-primary"
+                  className="btn btn-primary"
                   value="no"
                   onClick={this.addFriend}
                 >

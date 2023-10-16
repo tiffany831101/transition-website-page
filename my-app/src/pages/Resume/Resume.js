@@ -260,7 +260,13 @@ const Resume = () => {
     html2pdf()
       .set({
         filename: fileName,
-        html2canvas: { scale: 2, letterRendering: true, useCORS: true },
+        html2canvas: {
+          scale: 2,
+          letterRendering: true,
+          // allowTaint: false,
+          useCORS: true,
+        },
+
         jsPDF: {
           unit: "mm",
           format: "a4",

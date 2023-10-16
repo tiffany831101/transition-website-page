@@ -313,10 +313,10 @@ class Signin extends React.Component {
             </div>
 
             <div className="d-flex justify-content-center">
-              <div class="horizontal-line w-75">
-                <span class="line"></span>
-                <span class="or">or</span>
-                <span class="line"></span>
+              <div className="horizontal-line w-75">
+                <span className="line"></span>
+                <span className="or">or</span>
+                <span className="line"></span>
               </div>
             </div>
 

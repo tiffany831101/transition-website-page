@@ -564,7 +564,7 @@ const Blog = (props) => {
           //     <p className="ml-3">回應</p>
           //   </div>
           // </div>
-          <div className="col-4">
+          <div className="col-4" key={index}>
             <RecipeReviewCard />
           </div>
         ))}

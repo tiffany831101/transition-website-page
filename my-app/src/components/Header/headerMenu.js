@@ -33,7 +33,7 @@ const settings = ["Profile", "Busincess Card", "Resume", "Dashboard", "Logout"];
 function HeaderMenu({ headerCookies, username, cleanCookie }) {
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
-  console.log("username: ", username);
+  // console.log("username: ", username);
 
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
